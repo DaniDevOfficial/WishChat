@@ -3,3 +3,6 @@
 /Server/serviceAccountKey.json
 /Server/firebaseconfig.js
 
+/Client/wishchat/firebaseconfig.js
+/Client/wishchat/node_modules/
+
