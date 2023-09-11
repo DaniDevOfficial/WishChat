@@ -1,10 +1,10 @@
-import { SimpleChat } from './Components/SimpleChat'
+import { Wrapper } from "./Components/Wrapper";
 
 function App() {
 
   return (
     <div>
-      <SimpleChat />
+      <Wrapper />
     </div>
   );
 }

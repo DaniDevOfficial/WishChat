@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, push, onValue, off } from 'firebase/database';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-export function SimpleChat() {
+export function PersonalChat() {
     const location = useLocation();
     const currentPath = location.pathname;
     const pathSegments = currentPath.split('/').filter(segment => segment !== "");
     const userName = pathSegments[0];
+    const chattingwith = pathSegments[1];
 
-    const [wantToChatWith, setWantToChatWith] = useState()
-    const handleChattingWithChange = (event) => {
-        setWantToChatWith(event.target.value);
-    };
+
     const [formData, setFormData] = useState({
         name: `${userName}`,
         message: '',
+        recipient: `${chattingwith}`,
     });
 
     const [messagesArray, setMessagesArray] = useState([]);
@@ -25,6 +24,7 @@ export function SimpleChat() {
         setFormData({ ...formData, [name]: value });
     };
 
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -34,6 +34,7 @@ export function SimpleChat() {
         setFormData({
             name: `${userName}`,
             message: '',
+            recipient: `${chattingwith}`,
         });
     };
 
@@ -50,30 +51,20 @@ export function SimpleChat() {
             }
         });
 
+
         return () => {
 
             off(messagesRef);
         };
     }, [database]);
 
+    const filteredmessages = messagesArray.filter(
+        message => (message.name === userName && message.recipient === chattingwith) || (message.name === chattingwith && message.recipient === userName)
+    );
+
     return (
         <div>
             UserName: {userName}
-
-            <form >
-                <label htmlFor="name">Name:</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={wantToChatWith}
-                    onChange={handleChattingWithChange}
-                    required={true}
-                />
-            </form>
-            <Link to={`${wantToChatWith}`}>
-                <button>I want to chat With this person</button>
-            </Link>
             <form onSubmit={handleSubmit}>
 
                 <label htmlFor="message">Message:</label>
@@ -84,13 +75,14 @@ export function SimpleChat() {
                     onChange={handleInputChange}
                     required={true}
                 />
-
                 <input type="submit" value="Submit" />
+                <br />
+                Chat With: {chattingwith}
             </form>
             <div>
                 <h2>Messages:</h2>
                 <ul>
-                    {messagesArray.map((message, index) => (
+                    {filteredmessages.map((message, index) => (
                         <li key={index}>
                             <strong>{message.name}:</strong> {message.message}
                         </li>

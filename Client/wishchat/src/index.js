@@ -1,14 +1,14 @@
-// src/index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App'; // Import your main application component
-import firebaseApp from './firebaseConfig'; 
+import App from './App';
+// eslint-disable-next-line no-unused-vars
+import firebaseApp from './firebaseConfig';
+import { DataProvider } from './Components/DataManagement/DataContext';
 
-// Initialize Firebase with your configuration
 
 ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
-    document.getElementById('root')
+        <DataProvider>
+            <App />
+        </DataProvider>
+,    document.getElementById('root')
 );
