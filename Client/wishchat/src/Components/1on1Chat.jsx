@@ -74,6 +74,7 @@ export function PersonalChat() {
                     value={formData.message}
                     onChange={handleInputChange}
                     required={true}
+                    maxLength={100}
                 />
                 <input type="submit" value="Submit" />
                 <br />

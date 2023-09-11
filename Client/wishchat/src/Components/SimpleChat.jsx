@@ -56,6 +56,23 @@ export function SimpleChat() {
         };
     }, [database]);
 
+    const filteredChatsWith = messagesArray.filter(
+        message => message.name === userName || message.recipient === userName
+    );
+
+
+    const uniqueNames = new Set();
+
+    filteredChatsWith.forEach(message => {
+        if (message.name !== userName) {
+            uniqueNames.add(message.name);
+        }
+        if (message.recipient !== userName) {
+            uniqueNames.add(message.recipient);
+        }
+    });
+    const ChatWithPerson = Array.from(uniqueNames);
+
     return (
         <div>
             UserName: {userName}
@@ -74,28 +91,21 @@ export function SimpleChat() {
             <Link to={`${wantToChatWith}`}>
                 <button>I want to chat With this person</button>
             </Link>
-            <form onSubmit={handleSubmit}>
 
-                <label htmlFor="message">Message:</label>
-                <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required={true}
-                />
 
-                <input type="submit" value="Submit" />
-            </form>
             <div>
-                <h2>Messages:</h2>
+                <h2>You have chats with:</h2>
                 <ul>
-                    {messagesArray.map((message, index) => (
+                    {ChatWithPerson.map((name, index) => (
                         <li key={index}>
-                            <strong>{message.name}:</strong> {message.message}
+                            <strong>
+                                <Link to={`${name}`}>{name}</Link>
+                            </strong>
                         </li>
                     ))}
                 </ul>
+
+
             </div>
         </div>
     );
