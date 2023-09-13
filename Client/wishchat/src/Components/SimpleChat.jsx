@@ -20,22 +20,7 @@ export function SimpleChat() {
     const [messagesArray, setMessagesArray] = useState([]);
     const database = getDatabase();
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
-    };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        const messagesRef = ref(database, 'messages');
-        push(messagesRef, formData);
-
-        setFormData({
-            name: `${userName}`,
-            message: '',
-        });
-    };
 
     useEffect(() => {
         const messagesRef = ref(database, 'messages');
@@ -73,6 +58,21 @@ export function SimpleChat() {
     });
     const ChatWithPerson = Array.from(uniqueNames);
 
+
+
+    const latestMessage = messagesArray.reduce((latest, message) => {
+        if (
+            (message.name === userName && message.recipient === "") ||
+            (message.name === "chattingwith" && message.recipient === userName)
+        ) {
+            if (!latest || message.timestamp > latest.timestamp) {
+                return message;
+            }
+        }
+        return latest;
+    }, null);
+    
+    
     return (
         <div>
             UserName: {userName}
@@ -91,6 +91,7 @@ export function SimpleChat() {
             <Link to={`${wantToChatWith}`}>
                 <button>I want to chat With this person</button>
             </Link>
+
 
 
             <div>
