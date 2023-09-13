@@ -58,7 +58,9 @@ export function SimpleChat() {
     const ChatWithPerson = Array.from(uniqueNames);
 
 
-
+    function newChat () {
+        return
+    }
     const latestMessage = messagesArray.reduce((latest, message) => {
         if (
             (message.name === userName && message.recipient === "") ||
@@ -75,22 +77,21 @@ export function SimpleChat() {
     return (
         <div className='AllChatsContainer2'>
             <div className='AllChatsContainer'>
-                <div className="YourName">Your Username: {userName}</div>
-
-
-
-
-                <div>
-                    <h2>You have chats with:</h2>
-                    <ul>
-                        {ChatWithPerson.map((name, index) => (
-                            <li key={index}>
-                                <strong>
-                                    <Link to={`${name}`}>{name}</Link>
-                                </strong>
-                            </li>
-                        ))}
-                    </ul>
+                <div className="YourName">Your Username: {userName}</div>                <div>
+                    {ChatWithPerson.length > 0 && (
+                        <>
+                            <h2>You have chats with:</h2>
+                            <ul>
+                                {ChatWithPerson.map((name, index) => (
+                                    <li key={index}>
+                                        <strong>
+                                            <Link to={`${name}`}>{name}</Link>
+                                        </strong>
+                                    </li>
+                                ))}
+                            </ul>
+                        </>
+                    )}
                     <hr />
 
                     <form className='addNewFriend'>
@@ -106,9 +107,17 @@ export function SimpleChat() {
                             required={true}
                         />
                     </form>
-                    <Link to={`${wantToChatWith}`}>
-                        <button>I want to chat With this person</button>
-                    </Link>
+                    <div
+                        className="buttonContainer"
+                    >
+                        <button
+                            onClick={newChat()}
+                            className={`newChatButton ${!wantToChatWith ? 'disabledButton' : ''}`}
+                            disabled={!wantToChatWith}
+                        >
+                            +
+                        </button>
+                    </div>
 
 
                 </div>

@@ -30,3 +30,44 @@
     text-align: center;
 
 }
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .newChatButton {
+    background-color: #dc2aff;
+    color: #fff;
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s, transform 0.3s;
+
+  }
+
+.disabledButton {
+
+    background-color: #ccc; 
+    color: #666;
+    cursor: not-allowed; 
+    transition: background-color 0.3s, transform 0.3s;
+
+  }
+
+.newChatButton:hover {
+    background-color: #74d1e4;
+}
+.disabledButton:hover{
+    background-color: #6d6d6d; 
+    color: #c9c9c9;
+
+  }
+.newChatButton:active {
+    transform: scale(0.9); 
+}
