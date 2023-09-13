@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, push, onValue, off } from 'firebase/database';
 import { useLocation, Link } from 'react-router-dom';
-
+import '../Styles/AllChats.css'
 export function SimpleChat() {
     const location = useLocation();
     const currentPath = location.pathname;
     const pathSegments = currentPath.split('/').filter(segment => segment !== "");
     const userName = pathSegments[0];
+    const [isFormVisible, setFormVisible] = useState(false);
 
     const [wantToChatWith, setWantToChatWith] = useState()
     const handleChattingWithChange = (event) => {
@@ -19,8 +20,6 @@ export function SimpleChat() {
 
     const [messagesArray, setMessagesArray] = useState([]);
     const database = getDatabase();
-
-
 
     useEffect(() => {
         const messagesRef = ref(database, 'messages');
@@ -71,42 +70,48 @@ export function SimpleChat() {
         }
         return latest;
     }, null);
-    
-    
+
+
     return (
-        <div>
-            UserName: {userName}
-
-            <form >
-                <label htmlFor="name">Name:</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={wantToChatWith}
-                    onChange={handleChattingWithChange}
-                    required={true}
-                />
-            </form>
-            <Link to={`${wantToChatWith}`}>
-                <button>I want to chat With this person</button>
-            </Link>
+        <div className='AllChatsContainer2'>
+            <div className='AllChatsContainer'>
+                <div className="YourName">Your Username: {userName}</div>
 
 
 
-            <div>
-                <h2>You have chats with:</h2>
-                <ul>
-                    {ChatWithPerson.map((name, index) => (
-                        <li key={index}>
-                            <strong>
-                                <Link to={`${name}`}>{name}</Link>
-                            </strong>
-                        </li>
-                    ))}
-                </ul>
+
+                <div>
+                    <h2>You have chats with:</h2>
+                    <ul>
+                        {ChatWithPerson.map((name, index) => (
+                            <li key={index}>
+                                <strong>
+                                    <Link to={`${name}`}>{name}</Link>
+                                </strong>
+                            </li>
+                        ))}
+                    </ul>
+                    <hr />
+
+                    <form className='addNewFriend'>
+                        <div className="subtitle">Add a new Friend</div>
+                        <input
+                            className='AccountInput'
+                            placeholder='Their Username...'
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={wantToChatWith}
+                            onChange={handleChattingWithChange}
+                            required={true}
+                        />
+                    </form>
+                    <Link to={`${wantToChatWith}`}>
+                        <button>I want to chat With this person</button>
+                    </Link>
 
 
+                </div>
             </div>
         </div>
     );
