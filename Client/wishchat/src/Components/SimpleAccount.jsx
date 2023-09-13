@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../Styles/Login.css'
 export function SimpleAccount() {
     const [name, setName] = useState('');
@@ -39,11 +39,15 @@ export function SimpleAccount() {
                         required={true}
                         placeholder='Password'
                     />
+                    <div className="buttonCenter">
                         <input class="SubmitButton" type="submit" />
+                    </div>
+
                 </form>
 
                 <div>
-                    {name}
+                    <div className="smoolText">The Password doesnt get Saved so dont  worry remembering it (this will change in the future)</div>
+
                 </div>
             </div>
         </div>

@@ -50,7 +50,6 @@
     outline: none;
     border: none;
     flex: 1 1 auto;
-    margin: 5px;
     padding: 14px;
     text-align: center;
     text-transform: uppercase;
@@ -66,4 +65,12 @@
     background-position: right center;
     transform: scale(1.05);
 }
-
+.buttonCenter{
+    text-align: center;
+}
+.smoolText {
+    font-size: 14px;
+    color: #888; 
+    margin-top: 15px;
+    text-align: center;
+}

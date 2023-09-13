@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, push, onValue, off } from 'firebase/database';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import '../Styles/AllChats.css'
 export function SimpleChat() {
     const location = useLocation();
     const currentPath = location.pathname;
     const pathSegments = currentPath.split('/').filter(segment => segment !== "");
     const userName = pathSegments[0];
-    const [isFormVisible, setFormVisible] = useState(false);
+
+    let navigate = useNavigate();
 
     const [wantToChatWith, setWantToChatWith] = useState()
     const handleChattingWithChange = (event) => {
         setWantToChatWith(event.target.value);
     };
-    const [formData, setFormData] = useState({
-        name: `${userName}`,
-        message: '',
-    });
+
+    function newChat() {
+        navigate(`${wantToChatWith}`);
+
+    }
 
     const [messagesArray, setMessagesArray] = useState([]);
     const database = getDatabase();
@@ -54,17 +56,19 @@ export function SimpleChat() {
         if (message.recipient !== userName) {
             uniqueNames.add(message.recipient);
         }
+        if (message.recipient === userName && message.name === userName) {
+            uniqueNames.add(message.recipient);
+        }
     });
     const ChatWithPerson = Array.from(uniqueNames);
 
 
-    function newChat () {
-        return
-    }
+
     const latestMessage = messagesArray.reduce((latest, message) => {
         if (
             (message.name === userName && message.recipient === "") ||
-            (message.name === "chattingwith" && message.recipient === userName)
+            (message.name === "chattingwith" && message.recipient === userName) ||
+            (message.name === userName && message.recipient === userName)
         ) {
             if (!latest || message.timestamp > latest.timestamp) {
                 return message;
@@ -77,7 +81,8 @@ export function SimpleChat() {
     return (
         <div className='AllChatsContainer2'>
             <div className='AllChatsContainer'>
-                <div className="YourName">Your Username: {userName}</div>                <div>
+                <div className="YourName">Your Username: {userName}</div>
+                <div>
                     {ChatWithPerson.length > 0 && (
                         <>
                             <h2>You have chats with:</h2>
@@ -111,7 +116,7 @@ export function SimpleChat() {
                         className="buttonContainer"
                     >
                         <button
-                            onClick={newChat()}
+                            onClick={newChat}
                             className={`newChatButton ${!wantToChatWith ? 'disabledButton' : ''}`}
                             disabled={!wantToChatWith}
                         >
