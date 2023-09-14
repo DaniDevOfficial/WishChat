@@ -45,29 +45,26 @@ export function SimpleChat() {
     const filteredChatsWith = messagesArray.filter(
         message => message.name === userName || message.recipient === userName
     );
-    
-    const uniqueConversations = new Map(); 
-    
-    filteredChatsWith.forEach(message => {
+
+    const uniqueConversations = new Map();
+
+    messagesArray.forEach(message => {
         const key = message.name === userName ? message.recipient : message.name;
-    
+
         if (!uniqueConversations.has(key)) {
-            uniqueConversations.set(key, message);
+            uniqueConversations.set(key, [message]); 
         } else {
-            const currentYoungest = uniqueConversations.get(key);
-            const currentDate = new Date(message.sentDate);
-            const currentYoungestDate = new Date(currentYoungest.sentDate);
-    
-            if (currentDate > currentYoungestDate) {
-                uniqueConversations.set(key, message);
-            }
+            const currentConversation = uniqueConversations.get(key);
+            currentConversation.push(message); 
+            uniqueConversations.set(key, currentConversation); 
         }
     });
-    
-    const youngestMessages = Array.from(uniqueConversations.values());
-    
-    console.log('Youngest Messages:', youngestMessages);
-    
+
+
+    const lastMessagesInConversations = Array.from(uniqueConversations.values()).map(conversation => conversation[conversation.length - 1]);
+
+    console.log('Last Messages in Conversations:', lastMessagesInConversations);
+
 
     const uniqueNames = new Set();
 
@@ -86,18 +83,7 @@ export function SimpleChat() {
 
 
 
-    const latestMessage = messagesArray.reduce((latest, message) => {
-        if (
-            (message.name === userName && message.recipient === "") ||
-            (message.name === "chattingwith" && message.recipient === userName) ||
-            (message.name === userName && message.recipient === userName)
-        ) {
-            if (!latest || message.timestamp > latest.timestamp) {
-                return message;
-            }
-        }
-        return latest;
-    }, null);
+
 
 
     return (
