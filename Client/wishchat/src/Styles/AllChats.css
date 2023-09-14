@@ -71,3 +71,13 @@
 .newChatButton:active {
     transform: scale(0.9); 
 }
+.singleChatLinkContainer{
+  border: solid 1px rgb(193, 193, 193);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.noLinkStyling{
+  text-decoration: none;
+  color: inherit;
+}

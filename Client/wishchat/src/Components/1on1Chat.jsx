@@ -9,11 +9,11 @@ export function PersonalChat() {
     const userName = pathSegments[0];
     const chattingwith = pathSegments[1];
 
-
     const [formData, setFormData] = useState({
         name: `${userName}`,
         message: '',
         recipient: `${chattingwith}`,
+        sentDate: null, // Add a sentDate property
     });
 
     const [messagesArray, setMessagesArray] = useState([]);
@@ -24,17 +24,19 @@ export function PersonalChat() {
         setFormData({ ...formData, [name]: value });
     };
 
-
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        const sentDate = new Date().toLocaleString();
+
         const messagesRef = ref(database, 'messages');
-        push(messagesRef, formData);
+        push(messagesRef, { ...formData, sentDate }); // Include the sentDate
 
         setFormData({
             name: `${userName}`,
             message: '',
             recipient: `${chattingwith}`,
+            sentDate: null, 
         });
     };
 
@@ -51,9 +53,7 @@ export function PersonalChat() {
             }
         });
 
-
         return () => {
-
             off(messagesRef);
         };
     }, [database]);
@@ -66,7 +66,6 @@ export function PersonalChat() {
         <div>
             UserName: {userName}
             <form onSubmit={handleSubmit}>
-
                 <label htmlFor="message">Message:</label>
                 <textarea
                     id="message"
@@ -85,7 +84,7 @@ export function PersonalChat() {
                 <ul>
                     {filteredmessages.map((message, index) => (
                         <li key={index}>
-                            <strong>{message.name}:</strong> {message.message}
+                            <strong>{message.name} ({message.sentDate}):</strong> {message.message}
                         </li>
                     ))}
                 </ul>

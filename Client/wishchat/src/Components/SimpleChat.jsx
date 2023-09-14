@@ -45,7 +45,29 @@ export function SimpleChat() {
     const filteredChatsWith = messagesArray.filter(
         message => message.name === userName || message.recipient === userName
     );
-
+    
+    const uniqueConversations = new Map(); 
+    
+    filteredChatsWith.forEach(message => {
+        const key = message.name === userName ? message.recipient : message.name;
+    
+        if (!uniqueConversations.has(key)) {
+            uniqueConversations.set(key, message);
+        } else {
+            const currentYoungest = uniqueConversations.get(key);
+            const currentDate = new Date(message.sentDate);
+            const currentYoungestDate = new Date(currentYoungest.sentDate);
+    
+            if (currentDate > currentYoungestDate) {
+                uniqueConversations.set(key, message);
+            }
+        }
+    });
+    
+    const youngestMessages = Array.from(uniqueConversations.values());
+    
+    console.log('Youngest Messages:', youngestMessages);
+    
 
     const uniqueNames = new Set();
 
@@ -86,15 +108,15 @@ export function SimpleChat() {
                     {ChatWithPerson.length > 0 && (
                         <>
                             <h2>You have chats with:</h2>
-                            <ul>
-                                {ChatWithPerson.map((name, index) => (
-                                    <li key={index}>
-                                        <strong>
-                                            <Link to={`${name}`}>{name}</Link>
-                                        </strong>
-                                    </li>
-                                ))}
-                            </ul>
+                            {ChatWithPerson.map((name, index) => (
+                                <Link className="noLinkStyling" to={`${name}`}>  <div className="singleChatLinkContainer" key={index}>
+                                    <strong>
+                                        {name}
+                                    </strong>
+                                    <div className="latestmessage">This is a old message</div>
+                                </div>
+                                </Link>
+                            ))}
                         </>
                     )}
                     <hr />
