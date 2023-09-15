@@ -49,41 +49,20 @@ export function SimpleChat() {
     const uniqueConversations = new Map();
 
     messagesArray.forEach(message => {
-        const key = message.name === userName ? message.recipient : message.name;
-
-        if (!uniqueConversations.has(key)) {
-            uniqueConversations.set(key, [message]); 
-        } else {
-            const currentConversation = uniqueConversations.get(key);
-            currentConversation.push(message); 
-            uniqueConversations.set(key, currentConversation); 
+        const isMyMessage = message.name === userName;
+        const key = isMyMessage ? message.recipient : message.name;
+        const content = isMyMessage ? message.recipient : message.message;
+    
+        if (!uniqueConversations.has(key) || message.timestamp > uniqueConversations.get(key).timestamp) {
+            uniqueConversations.set(key, { name: key, message: message.message });
         }
     });
-
-
-    const lastMessagesInConversations = Array.from(uniqueConversations.values()).map(conversation => conversation[conversation.length - 1]);
-
-    console.log('Last Messages in Conversations:', lastMessagesInConversations);
-
-
-    const uniqueNames = new Set();
-
-    filteredChatsWith.forEach(message => {
-        if (message.name !== userName) {
-            uniqueNames.add(message.name);
-        }
-        if (message.recipient !== userName) {
-            uniqueNames.add(message.recipient);
-        }
-        if (message.recipient === userName && message.name === userName) {
-            uniqueNames.add(message.recipient);
-        }
-    });
-    const ChatWithPerson = Array.from(uniqueNames);
-
-
-
-
+    
+    const latestMessages = Array.from(uniqueConversations.values());
+    
+    console.log('Unique Names and Latest Messages:', latestMessages);
+    
+    
 
 
     return (
@@ -91,20 +70,9 @@ export function SimpleChat() {
             <div className='AllChatsContainer'>
                 <div className="YourName">Your Username: {userName}</div>
                 <div>
-                    {ChatWithPerson.length > 0 && (
-                        <>
-                            <h2>You have chats with:</h2>
-                            {ChatWithPerson.map((name, index) => (
-                                <Link className="noLinkStyling" to={`${name}`}>  <div className="singleChatLinkContainer" key={index}>
-                                    <strong>
-                                        {name}
-                                    </strong>
-                                    <div className="latestmessage">This is a old message</div>
-                                </div>
-                                </Link>
-                            ))}
-                        </>
-                    )}
+
+
+
                     <hr />
 
                     <form className='addNewFriend'>
