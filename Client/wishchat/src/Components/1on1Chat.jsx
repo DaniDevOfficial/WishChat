@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, push, onValue, off } from 'firebase/database';
 import { useLocation } from 'react-router-dom';
+import "../Styles/UniqueChat.css"
 
 export function PersonalChat() {
     const location = useLocation();
@@ -13,7 +14,7 @@ export function PersonalChat() {
         name: `${userName}`,
         message: '',
         recipient: `${chattingwith}`,
-        sentDate: null, 
+        sentDate: null,
     });
 
     const [messagesArray, setMessagesArray] = useState([]);
@@ -30,13 +31,13 @@ export function PersonalChat() {
         const sentDate = new Date().toLocaleString();
 
         const messagesRef = ref(database, 'messages');
-        push(messagesRef, { ...formData, sentDate }); 
+        push(messagesRef, { ...formData, sentDate });
 
         setFormData({
             name: `${userName}`,
             message: '',
             recipient: `${chattingwith}`,
-            sentDate: null, 
+            sentDate: null,
         });
     };
 
@@ -63,31 +64,32 @@ export function PersonalChat() {
     );
 
     return (
-        <div>
-            UserName: {userName}
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="message">Message:</label>
-                <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required={true}
-                    maxLength={100}
-                />
-                <input type="submit" value="Submit" />
-                <br />
-                Chat With: {chattingwith}
-            </form>
-            <div>
-                <h2>Messages:</h2>
-                <ul>
-                    {filteredmessages.map((message, index) => (
-                        <li key={index}>
-                            <strong>{message.name} ({message.sentDate}):</strong> {message.message}
-                        </li>
-                    ))}
-                </ul>
+        <div className='AllChatsContainer2'>
+            <div className='AllChatsContainer'>
+
+                <div>
+                    <h2>Messages:</h2>
+                    <ul>
+                        {filteredmessages.map((message, index) => (
+                            <li key={index}>
+                                <strong>{message.name} ({message.sentDate}):</strong> {message.message}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="message">Message:</label>
+                    <input
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required={true}
+                        maxLength={100}
+                    />
+                    <input type="submit" value="Submit" />
+                    <br />
+                </form>
             </div>
         </div>
     );

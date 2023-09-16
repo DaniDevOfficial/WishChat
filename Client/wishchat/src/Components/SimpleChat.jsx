@@ -78,10 +78,7 @@ export function SimpleChat() {
                         </div>
                         </Link>
                     ))}
-
-
                     <hr />
-
                     <form className='addNewFriend'>
                         <div className="subtitle">Add a new Friend</div>
                         <input
