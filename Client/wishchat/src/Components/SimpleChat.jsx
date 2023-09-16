@@ -46,23 +46,23 @@ export function SimpleChat() {
         message => message.name === userName || message.recipient === userName
     );
 
+    console.log(filteredChatsWith);
+
     const uniqueConversations = new Map();
 
-    messagesArray.forEach(message => {
+    filteredChatsWith.forEach(message => {
         const isMyMessage = message.name === userName;
         const key = isMyMessage ? message.recipient : message.name;
-        const content = isMyMessage ? message.recipient : message.message;
-    
-        if (!uniqueConversations.has(key) || message.timestamp > uniqueConversations.get(key).timestamp) {
-            uniqueConversations.set(key, { name: key, message: message.message });
+        const content = message.message;
+
+        if (!uniqueConversations.has(key) || message.sentDate > uniqueConversations.get(key).sentDate) {
+            uniqueConversations.set(key, { name: key, message: content, sentDate: message.sentDate });
         }
     });
-    
+
     const latestMessages = Array.from(uniqueConversations.values());
-    
+
     console.log('Unique Names and Latest Messages:', latestMessages);
-    
-    
 
 
     return (
@@ -71,6 +71,13 @@ export function SimpleChat() {
                 <div className="YourName">Your Username: {userName}</div>
                 <div>
 
+                    {latestMessages.map((message, index) => (
+                        <Link className="noLinkStyling" to={`${message.name}`}>
+                        <div className="singleChatLinkContainer" key={index}>
+                            <strong>{message.name} </strong> <div className="newestMessage">{message.message}</div>
+                        </div>
+                        </Link>
+                    ))}
 
 
                     <hr />

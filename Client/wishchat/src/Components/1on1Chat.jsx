@@ -13,7 +13,7 @@ export function PersonalChat() {
         name: `${userName}`,
         message: '',
         recipient: `${chattingwith}`,
-        sentDate: null, // Add a sentDate property
+        sentDate: null, 
     });
 
     const [messagesArray, setMessagesArray] = useState([]);
@@ -30,7 +30,7 @@ export function PersonalChat() {
         const sentDate = new Date().toLocaleString();
 
         const messagesRef = ref(database, 'messages');
-        push(messagesRef, { ...formData, sentDate }); // Include the sentDate
+        push(messagesRef, { ...formData, sentDate }); 
 
         setFormData({
             name: `${userName}`,
