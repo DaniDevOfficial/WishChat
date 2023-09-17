@@ -73,16 +73,16 @@ export function SimpleChat() {
                 <div>
 
                     {latestMessages.map((message, index) => (
-                        <div className="uniqueChatBoxContainer">
+                        <Link className="uniqueChatBoxContainer noLinkStyling" to={`${message.name}`}>
                             <div className="ProfilePicAllChats">
                                 <img className="ProfilePicSmall" src={profilePic} alt="" />
                             </div>
-                        <Link className="noLinkStyling" to={`${message.name}`}>
-                        <div className="singleChatLinkContainer" key={index}>
-                            <strong>{message.name} </strong> <div className="newestMessage">{message.message}</div>
-                        </div>
+                            <div className="noLinkStyling" >
+                                <div className="singleChatLinkContainer" key={index}>
+                                    <strong>{message.name} </strong> <div className="newestMessage">{message.message}</div>
+                                </div>
+                            </div>
                         </Link>
-                        </div>
                     ))}
                     <hr />
                     <form className='addNewFriend'>

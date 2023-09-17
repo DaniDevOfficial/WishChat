@@ -72,12 +72,18 @@
     transform: scale(0.9); 
 }
 .uniqueChatBoxContainer {
-  border: solid 1px rgb(193, 193, 193);
+  border-top: solid 1px rgb(193, 193, 193);
   display: flex;
   align-items: center;
   gap: 0;
   padding: 10px;
 }
+
+.uniqueChatBoxContainer:hover {
+  background-color: lightgray;
+  transition: background-color 0.3s ease;
+}
+
 .noLinkStyling {
   text-decoration: none;
   color: inherit;
