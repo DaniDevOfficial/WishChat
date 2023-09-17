@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, push, onValue, off } from 'firebase/database';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import '../Styles/AllChats.css'
+import profilePic from '../Images/TempProfilepic.jpeg'
 export function SimpleChat() {
     const location = useLocation();
     const currentPath = location.pathname;
@@ -72,11 +73,16 @@ export function SimpleChat() {
                 <div>
 
                     {latestMessages.map((message, index) => (
+                        <div className="uniqueChatBoxContainer">
+                            <div className="ProfilePicAllChats">
+                                <img className="ProfilePicSmall" src={profilePic} alt="" />
+                            </div>
                         <Link className="noLinkStyling" to={`${message.name}`}>
                         <div className="singleChatLinkContainer" key={index}>
                             <strong>{message.name} </strong> <div className="newestMessage">{message.message}</div>
                         </div>
                         </Link>
+                        </div>
                     ))}
                     <hr />
                     <form className='addNewFriend'>

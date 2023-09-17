@@ -71,13 +71,14 @@
 .newChatButton:active {
     transform: scale(0.9); 
 }
-.singleChatLinkContainer{
+.uniqueChatBoxContainer {
   border: solid 1px rgb(193, 193, 193);
-  padding-top: 10px;
-  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 10px;
 }
-
-.noLinkStyling{
+.noLinkStyling {
   text-decoration: none;
   color: inherit;
 }
@@ -85,4 +86,15 @@
 .newestMessage {
   font-size: 50%;
   color: grey;
+}
+
+
+
+.ProfilePicSmall {
+  display: flex;
+  align-items: flex-end;
+  width: 30px;
+  height: auto;
+  border-radius: 50%;
+  margin-right: 10px;
 }

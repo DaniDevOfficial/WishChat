@@ -27,20 +27,26 @@ export function PersonalChat() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        const sentDate = new Date().toLocaleString();
-
-        const messagesRef = ref(database, 'messages');
-        push(messagesRef, { ...formData, sentDate });
-
-        setFormData({
+        
+        const trimmedMessage = formData.message.trim();
+      
+        if (trimmedMessage !== "") {
+          const sentDate = new Date().toLocaleString();
+          const messagesRef = ref(database, 'messages');
+          
+          push(messagesRef, { ...formData, message: trimmedMessage, sentDate });
+      
+          setFormData({
             name: `${userName}`,
             message: '',
             recipient: `${chattingwith}`,
             sentDate: null,
-        });
-    };
-
+          });
+        } else {
+          alert("Message cannot be empty or consist of only spaces.");
+        }
+      };
+      
     useEffect(() => {
         const messagesRef = ref(database, 'messages');
         onValue(messagesRef, (snapshot) => {
