@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getDatabase, ref, push, onValue, off } from 'firebase/database';
+import { getDatabase, ref, onValue, off } from 'firebase/database';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import '../Styles/AllChats.css'
 import profilePic from '../Images/TempProfilepic.jpeg'
@@ -48,13 +48,16 @@ export function SimpleChat() {
     );
 
     console.log(filteredChatsWith);
-
     const uniqueConversations = new Map();
 
     filteredChatsWith.forEach(message => {
         const isMyMessage = message.name === userName;
         const key = isMyMessage ? message.recipient : message.name;
-        const content = message.message;
+        let content = message.message;
+
+        if (content.length > 30) {
+            content = content.substring(0, 30) + '...';
+        }
 
         if (!uniqueConversations.has(key) || message.sentDate > uniqueConversations.get(key).sentDate) {
             uniqueConversations.set(key, { name: key, message: content, sentDate: message.sentDate });
@@ -63,14 +66,23 @@ export function SimpleChat() {
 
     const latestMessages = Array.from(uniqueConversations.values());
 
-    console.log('Unique Names and Latest Messages:', latestMessages);
 
 
     return (
         <div className='AllChatsContainer2'>
             <div className='AllChatsContainer'>
-                <div className="YourName">Your Username: {userName}</div>
                 <div>
+                    <div className="YourName"></div>
+                    <div className="uniqueChatBoxContainer noLinkStyling" >
+                        <div className="ProfilePicAllChats">
+                            <img className="ProfilePicSmall" src={profilePic} alt="" />
+                        </div>
+                        <div className="noLinkStyling" >
+                            <div className="singleChatLinkContainer">
+                                Your Username: {userName}
+                            </div>
+                        </div>
+                    </div>
 
                     {latestMessages.map((message, index) => (
                         <Link className="uniqueChatBoxContainer noLinkStyling" to={`${message.name}`}>
