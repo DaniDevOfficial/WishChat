@@ -20,6 +20,8 @@ export function PersonalChat() {
     const [messagesArray, setMessagesArray] = useState([]);
     const database = getDatabase();
 
+
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });

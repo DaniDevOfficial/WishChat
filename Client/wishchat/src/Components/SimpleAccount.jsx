@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/Login.css'
-export function SimpleAccount() {
+export function SimpleAccount({setChattingwith}) {
     const [name, setName] = useState('');
 
     let navigate = useNavigate();
@@ -11,7 +11,7 @@ export function SimpleAccount() {
     };
     const handleSubmit = () => {
         navigate(`/${name}`);
-
+        setChattingwith(name)
     }
     return (
         <div className="LoginWrapper2">

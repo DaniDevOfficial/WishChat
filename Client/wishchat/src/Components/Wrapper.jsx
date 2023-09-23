@@ -1,21 +1,22 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { SimpleChat } from './SimpleChat';
 import { SimpleAccount } from './SimpleAccount';
-import { PersonalChat } from './1on1Chat';
+import { WholeChat } from './Wholechat';
 export function Wrapper() {
   
+  const [chattingwith, setChattingwith] = useState("")
 
   return (
     <Router>
       <Routes>
 
-        <Route path="/" element={<SimpleAccount />} />
-        <Route path="/:name" element={<SimpleChat />} />
-        <Route path="/:name/:chatname" element={<PersonalChat />} />
+        <Route path="/" element={<SimpleAccount setChattingwith={setChattingwith}/>} />
+        <Route path="/:name" element={<WholeChat />} />
 
       </Routes>
+      {chattingwith}
+      asd
     </Router>
   );
 };
