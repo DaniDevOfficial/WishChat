@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, push, onValue, off } from 'firebase/database';
-import { useLocation } from 'react-router-dom';
 import "../Styles/UniqueChat.css"
 
-export function PersonalChat() {
-    const location = useLocation();
-    const currentPath = location.pathname;
-    const pathSegments = currentPath.split('/').filter(segment => segment !== "");
-    const userName = pathSegments[0];
-    const chattingwith = pathSegments[1];
+export function PersonalChat({ user, chattingWith }) {
+    const userName = user
+    const chattingwith = chattingWith
 
     const [formData, setFormData] = useState({
         name: `${userName}`,
@@ -29,26 +25,26 @@ export function PersonalChat() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
+
         const trimmedMessage = formData.message.trim();
-      
+
         if (trimmedMessage !== "") {
-          const sentDate = new Date().toLocaleString();
-          const messagesRef = ref(database, 'messages');
-          
-          push(messagesRef, { ...formData, message: trimmedMessage, sentDate });
-      
-          setFormData({
-            name: `${userName}`,
-            message: '',
-            recipient: `${chattingwith}`,
-            sentDate: null,
-          });
+            const sentDate = new Date().toLocaleString();
+            const messagesRef = ref(database, 'messages');
+
+            push(messagesRef, { ...formData, message: trimmedMessage, sentDate });
+
+            setFormData({
+                name: `${userName}`,
+                message: '',
+                recipient: `${chattingwith}`,
+                sentDate: null,
+            });
         } else {
-          alert("Message cannot be empty or consist of only spaces.");
+            alert("Message cannot be empty or consist of only spaces.");
         }
-      };
-      
+    };
+
     useEffect(() => {
         const messagesRef = ref(database, 'messages');
         onValue(messagesRef, (snapshot) => {

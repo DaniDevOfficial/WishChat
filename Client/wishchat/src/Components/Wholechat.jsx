@@ -1,18 +1,18 @@
 import { useState } from "react"
 import { SimpleChat } from "./SimpleChat"
 import { PersonalChat } from "./PersonalChat"
-import { Route, Router, Routes } from "react-router-dom"
-import { SimpleAccount } from "./SimpleAccount"
 
 
-export function WholeChat() {
+export function WholeChat({me}) {
 
-    const [user, setUser] = useState("")
-    const [chattingwith, setChattingwith] = useState("")
+    const [user, setUser] = useState(me || "dani");
+    const [chattingWith, setChattingWith] = useState()
+    
     return (
         <>
-            <SimpleChat />
-            <PersonalChat />
+            <SimpleChat user={user} setChattingWith={setChattingWith}/>
+            {chattingWith} + asd
+            <PersonalChat user={user} chattingWith={chattingWith}/>
         </>
     )
 }

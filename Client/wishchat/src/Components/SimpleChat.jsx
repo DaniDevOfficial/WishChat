@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue, off } from 'firebase/database';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../Styles/AllChats.css'
 import profilePic from '../Images/TempProfilepic.jpeg'
-export function SimpleChat() {
-    const location = useLocation();
-    const currentPath = location.pathname;
-    const pathSegments = currentPath.split('/').filter(segment => segment !== "");
-    const userName = pathSegments[0];
-
-    let navigate = useNavigate();
+export function SimpleChat({ user, setChattingWith }) {
+    const userName = user
 
     const [wantToChatWith, setWantToChatWith] = useState()
+
+
     const handleChattingWithChange = (event) => {
-        setWantToChatWith(event.target.value);
+        setChattingWith(event.target.value);
+        setWantToChatWith(event.target.value)
+    };
+
+    const handleChatLinkClick = (name) => {
+        setChattingWith(name);
     };
 
     function newChat() {
-        navigate(`${wantToChatWith}`);
-
+        alert("new chat with " + { wantToChatWith })
     }
 
     const [messagesArray, setMessagesArray] = useState([]);
@@ -47,7 +48,6 @@ export function SimpleChat() {
         message => message.name === userName || message.recipient === userName
     );
 
-    console.log(filteredChatsWith);
     const uniqueConversations = new Map();
 
     filteredChatsWith.forEach(message => {
@@ -85,7 +85,7 @@ export function SimpleChat() {
                     </div>
 
                     {latestMessages.map((message, index) => (
-                        <Link className="uniqueChatBoxContainer noLinkStyling" to={`${message.name}`}>
+                        <div className="uniqueChatBoxContainer" onClick={() => handleChatLinkClick(message.name)}>
                             <div className="ProfilePicAllChats">
                                 <img className="ProfilePicSmall" src={profilePic} alt="" />
                             </div>
@@ -94,7 +94,7 @@ export function SimpleChat() {
                                     <strong>{message.name} </strong> <div className="newestMessage">{message.message}</div>
                                 </div>
                             </div>
-                        </Link>
+                        </div>
                     ))}
                     <hr />
                     <form className='addNewFriend'>

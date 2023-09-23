@@ -5,18 +5,16 @@ import { SimpleAccount } from './SimpleAccount';
 import { WholeChat } from './Wholechat';
 export function Wrapper() {
   
-  const [chattingwith, setChattingwith] = useState("")
+  const [me, setMe] = useState("")
 
   return (
     <Router>
       <Routes>
 
-        <Route path="/" element={<SimpleAccount setChattingwith={setChattingwith}/>} />
-        <Route path="/:name" element={<WholeChat />} />
+        <Route path="/" element={<SimpleAccount setMe={setMe}/>} />
+        <Route path="/Chat" element={<WholeChat me={me}/>} />
 
       </Routes>
-      {chattingwith}
-      asd
     </Router>
   );
 };
