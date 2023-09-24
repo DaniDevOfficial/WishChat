@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { getDatabase, ref, push, onValue, off } from 'firebase/database';
 import "../Styles/UniqueChat.css"
+import profilepic from '../Images/TempProfilepic.jpeg'
 
 export function PersonalChat({ user, chattingWith }) {
-    const userName = user
-    const chattingwith = chattingWith
+    const userName = user;
+    const chattingwith = chattingWith || "a";
 
     const [formData, setFormData] = useState({
         name: `${userName}`,
@@ -15,8 +16,7 @@ export function PersonalChat({ user, chattingWith }) {
 
     const [messagesArray, setMessagesArray] = useState([]);
     const database = getDatabase();
-
-
+    const bottomRef = useRef(null);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -40,6 +40,11 @@ export function PersonalChat({ user, chattingWith }) {
                 recipient: `${chattingwith}`,
                 sentDate: null,
             });
+
+            // Scroll to the bottom after adding a new message
+            if (bottomRef.current) {
+                bottomRef.current.scrollIntoView({ behavior: "smooth" });
+            }
         } else {
             alert("Message cannot be empty or consist of only spaces.");
         }
@@ -55,6 +60,11 @@ export function PersonalChat({ user, chattingWith }) {
                     messages.push(message);
                 });
                 setMessagesArray(messages);
+
+                // Scroll to the bottom when messages update
+                if (bottomRef.current) {
+                    bottomRef.current.scrollIntoView({});
+                }
             }
         });
 
@@ -69,9 +79,22 @@ export function PersonalChat({ user, chattingWith }) {
 
     return (
         <div className=''>
+            <div className="TopPart">
+                <div className="TopLeft">
+                    <img className="ProfilePic" src={profilepic} alt="" />
+                    <div className="ChatName">
+                        <div className="ChatNameName">
+                            {chattingWith}
+                        </div>
+                        <div className="ChatNameStatus">
+                            { /** Here for Staus but later */}
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className=''>
 
-                <div>
+                <div className="MessagesContainer">
                     <h2>Messages:</h2>
                     <ul>
                         {filteredmessages.map((message, index) => (
@@ -80,20 +103,23 @@ export function PersonalChat({ user, chattingWith }) {
                             </li>
                         ))}
                     </ul>
+                    <div ref={bottomRef}></div>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="message">Message:</label>
-                    <input
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        required={true}
-                        maxLength={100}
-                    />
-                    <input type="submit" value="Submit" />
-                    <br />
-                </form>
+                <div className="BottomPart">
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="message">Message:</label>
+                        <input
+                            id="message"
+                            name="message"
+                            value={formData.message}
+                            onChange={handleInputChange}
+                            required={true}
+                            maxLength={100}
+                        />
+                        <input type="submit" value="Submit" />
+                        <br />
+                    </form>
+                </div>
             </div>
         </div>
     );

@@ -6,7 +6,7 @@ import '../Styles/WholeChat.css'
 export function WholeChat({ me }) {
 
     const [user, setUser] = useState(me || "dani");
-    const [chattingWith, setChattingWith] = useState()
+    const [chattingWith, setChattingWith] = useState("david")
 
     return (
         <>
@@ -15,6 +15,7 @@ export function WholeChat({ me }) {
                     <SimpleChat user={user} setChattingWith={setChattingWith} />
 
                 </div>
+                
                 <div className="PersonalChatContainer">
                     <PersonalChat user={user} chattingWith={chattingWith} />
 
