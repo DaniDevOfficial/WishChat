@@ -1,0 +1,21 @@
+.WholeChatContainer {
+    display: flex;
+    min-width: 80vw;
+    max-height: 100vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.SimpleChatContainer {
+    background-color: rgba(0, 255, 255, 0.484);
+    width: 40%;
+    overflow: auto; 
+    padding-bottom: 30px;
+}
+
+.PersonalChatContainer {
+    width: 100%;
+    background-color: rgba(205, 255, 253, 0.534);
+    height: 100vh;
+    overflow: auto; 
+}

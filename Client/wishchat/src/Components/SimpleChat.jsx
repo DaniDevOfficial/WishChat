@@ -100,7 +100,7 @@ export function SimpleChat({ user, setChattingWith }) {
                     <form className='addNewFriend'>
                         <div className="subtitle">Add a new Friend</div>
                         <input
-                            className='AccountInput'
+                            className='NewFriendInput'
                             placeholder='Their Username...'
                             type="text"
                             id="name"

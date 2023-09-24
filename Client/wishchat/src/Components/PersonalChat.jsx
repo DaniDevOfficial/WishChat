@@ -68,8 +68,8 @@ export function PersonalChat({ user, chattingWith }) {
     );
 
     return (
-        <div className='AllChatsContainer2'>
-            <div className='AllChatsContainer'>
+        <div className=''>
+            <div className=''>
 
                 <div>
                     <h2>Messages:</h2>
