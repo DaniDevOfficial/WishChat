@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { getDatabase, ref, push, onValue, off } from 'firebase/database';
 import "../Styles/UniqueChat.css"
 import profilepic from '../Images/TempProfilepic.jpeg'
+import { FaPaperPlane } from 'react-icons/fa';
 
 export function PersonalChat({ user, chattingWith }) {
     const userName = user;
@@ -46,7 +47,7 @@ export function PersonalChat({ user, chattingWith }) {
                 bottomRef.current.scrollIntoView({ behavior: "smooth" });
             }
         } else {
-            alert("Message cannot be empty or consist of only spaces.");
+            
         }
     };
 
@@ -106,18 +107,19 @@ export function PersonalChat({ user, chattingWith }) {
                     <div ref={bottomRef}></div>
                 </div>
                 <div className="BottomPart">
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor="message">Message:</label>
+                    <form className="newMessageForm" onSubmit={handleSubmit}>
                         <input
-                            id="message"
+                            className="messageInput"
                             name="message"
+                            placeholder='New Message ...'
                             value={formData.message}
                             onChange={handleInputChange}
                             required={true}
                             maxLength={100}
                         />
-                        <input type="submit" value="Submit" />
-                        <br />
+                        <button className='sendMessage' onClick={handleSubmit}>
+                            <FaPaperPlane className='icon' />
+                        </button>
                     </form>
                 </div>
             </div>

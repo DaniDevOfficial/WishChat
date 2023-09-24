@@ -16,6 +16,6 @@
 .PersonalChatContainer {
     width: 100%;
     background-color: rgba(205, 255, 253, 0.534);
-    height: 100vh;
+    min-height: 100vh;
     overflow: auto; 
 }
