@@ -28,6 +28,12 @@
     border-radius: 50%;
     margin-right: 10px;
 }
+
+
+.MessagesContainer{
+    margin-bottom: 12vh;
+}
+
 .BottomPart{
     position: fixed;   
     bottom: 0;

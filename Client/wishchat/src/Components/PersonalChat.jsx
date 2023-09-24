@@ -6,7 +6,13 @@ import { FaPaperPlane } from 'react-icons/fa';
 
 export function PersonalChat({ user, chattingWith }) {
     const userName = user;
-    const chattingwith = chattingWith || "a";
+    const chattingwith = chattingWith;
+
+    useEffect(() => {
+        if (bottomRef.current) {
+            bottomRef.current.scrollIntoView();
+        }
+    }, [chattingwith]);
 
     const [formData, setFormData] = useState({
         name: `${userName}`,
@@ -44,10 +50,10 @@ export function PersonalChat({ user, chattingWith }) {
 
             // Scroll to the bottom after adding a new message
             if (bottomRef.current) {
-                bottomRef.current.scrollIntoView({ behavior: "smooth" });
+                bottomRef.current.scrollIntoView({});
             }
         } else {
-            
+
         }
     };
 
@@ -104,8 +110,9 @@ export function PersonalChat({ user, chattingWith }) {
                             </li>
                         ))}
                     </ul>
-                    <div ref={bottomRef}></div>
                 </div>
+                <div ref={bottomRef}></div>
+
                 <div className="BottomPart">
                     <form className="newMessageForm" onSubmit={handleSubmit}>
                         <input
