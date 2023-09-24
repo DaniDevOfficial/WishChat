@@ -7,10 +7,9 @@ export function SimpleChat({ user, setChattingWith }) {
     const userName = user
 
     const [wantToChatWith, setWantToChatWith] = useState()
-
+    const [wantToChatWithTemp, setWantToChatWithTemp] = useState()
 
     const handleChattingWithChange = (event) => {
-        setChattingWith(event.target.value);
         setWantToChatWith(event.target.value)
     };
 
@@ -19,7 +18,8 @@ export function SimpleChat({ user, setChattingWith }) {
     };
 
     function newChat() {
-        alert("new chat with " + { wantToChatWith })
+        setChattingWith(wantToChatWith)
+        setWantToChatWith('');
     }
 
     const [messagesArray, setMessagesArray] = useState([]);
