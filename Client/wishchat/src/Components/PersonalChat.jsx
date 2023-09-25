@@ -103,13 +103,23 @@ export function PersonalChat({ user, chattingWith }) {
 
                 <div className="MessagesContainer">
                     <h2>Messages:</h2>
-                    <ul>
-                        {filteredmessages.map((message, index) => (
-                            <li key={index}>
-                                <strong>{message.name} ({message.sentDate}):</strong> {message.message}
-                            </li>
-                        ))}
-                    </ul>
+                    {filteredmessages.map((message, index) => (
+                        <div className="SingleMessageContainer" key={index}>
+                            <div className={`SingleMessage ${message.name === userName ? 'mymessage' : 'notmymessage'}`}>
+                                <div className="SingleMessageName">
+                                    {message.name}
+                                    ({message.sentDate}):
+                                </div>
+                                <div className="SingleMessageDate">
+
+                                </div>
+                                <div className="SingleMessageMessage">
+                                {message.message}
+
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
                 <div ref={bottomRef}></div>
 

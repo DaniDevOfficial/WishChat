@@ -32,7 +32,34 @@
 
 .MessagesContainer{
     margin-bottom: 12vh;
+
 }
+.SingleMessageContainer{
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    
+}
+.SingleMessage{
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin: 10px 10px;
+    max-width: 60%;
+}
+.mymessage{
+    background-color:#00b392;
+    align-self: flex-end;
+}
+.notmymessage{
+    background-color: rgb(150, 150, 150);
+    align-self: flex-start;
+
+}
+
+
+
+
 
 .BottomPart{
     position: fixed;   
