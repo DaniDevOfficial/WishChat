@@ -1,70 +1,139 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align='center'>
+    <h1><b>Wishlingo</b></h1>
+    <p>A simple software to Chat with Friends and also in Groups.</p>
+</div>
+<div align="center">
+    <img src="https://firebasestorage.googleapis.com/v0/b/wishchatprog2.appspot.com/o/Images%2FMinimalist%20Black%20Beige%20Typography%20Fashion%20Business%20Logo.png?alt=media&token=6c68995f-4485-4955-bea6-6c3d12b0091f" alt="Description of the Image" style="width: 300px; border-radius: 10px;">
 
-## Available Scripts
+</div>
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## About
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+WishChat is a simple Chat app where the user is able to send and recive messages form Single People or even groups. In adition the user can send a image attached to the Messages. Do finish later
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Example
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### local installation:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. clone the repo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+git clone https://github.com/David21092/WishChat/tree/dev
+```
 
-### `npm run eject`
+2. cd into cloned repo
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+cd wishchat
+```
+```
+cd .\Client\wishchat\
+```
+3. install dependencies
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+npm install react-router-dom
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+npm install firebase 
+```
 
-## Learn More
+```
+npm install @firebase/app
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm install react-icons/fa
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Create Firebase DB
 
-### Code Splitting
+Due to the fact that you cant use my firebase realtime DB because i would have to give out my Tokens, you need to create your own one and just simply connect it with the app. This File should be called "firebaseConfig.jsx", its located in the src folder and should look something like this: 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<br/>import { initializeApp } from "firebase/app";
+<br/>import { getAuth } from 'firebase/auth'
+<br/>
+<br/>const firebaseConfig = {
+<br/>  apiKey: "YOUR_TEMP_API_KEY",
+<br/>  authDomain: "YOUR_TEMP_AUTH_DOMAIN",
+<br/>  databaseURL: "YOUR_TEMP_DATABASE_URL",
+<br/>  projectId: "YOUR_TEMP_PROJECT_ID",
+<br/>  storageBucket: "YOUR_TEMP_STORAGE_BUCKET",
+<br/>  messagingSenderId: "YOUR_TEMP_MESSAGING_SENDER_ID",
+<br/>  appId: "YOUR_TEMP_APP_ID"
+<br/>};
 
-### Analyzing the Bundle Size
+const app = initializeApp(firebaseConfig);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+export const auth = getAuth(app);
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+5. run the app
 
-### Advanced Configuration
+```
+npm run start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<br />
 
-### Deployment
+<br />
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 💻 **TECHNOLOGIES**
 
-### `npm run build` fails to minify
+[<div align="center"><img alt="CSS3" src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" /></div>](#)
+[<div align="center"><img alt="HTML5" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" /></div>](#)
+[<div align="center"><img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" /></div>](#)
+[<div align="center"><img alt="NPM" src="https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white" /></div>](#)
+[<div align="center"><img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" /></div>](#)
+[<div align="center"><img alt="React Router" src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white" /></div>](#)
+[<div align="center"><img alt="Firebase" src="https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase" /></div>](#)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<br />
+
+---
+
+## 📎 **LICENSE**
+
+This project is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+### You are free to:
+
+- **Share**: Copy and redistribute the material in any medium or format.
+- **Adapt**: Remix, transform, and build upon the material for any purpose, even commercially.
+
+The licensor cannot revoke these freedoms as long as you follow the license terms.
+
+### Under the following terms:
+
+- **Attribution**: You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+
+No additional restrictions: You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
+
+#### Attribution Information:
+
+When using this work, please provide the following attribution:
+
+"Whishlingo" by David21092 is licensed under CC BY 4.0. To view a copy of this license, visit [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+
+<br />
+
+---
+
+## 📌 **LINKS**
+
+[<img alt="Github" src="https://img.shields.io/badge/David21092-%23181717.svg?style=for-the-badge&logo=github&logoColor=white" />](https://github.com/David21092)
+
+>>>>>>> dev
