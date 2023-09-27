@@ -1,6 +1,6 @@
 
 <div align='center'>
-    <h1><b>Wishlingo</b></h1>
+    <h1><b>WishChat</b></h1>
     <p>A simple software to Chat with Friends and also in Groups.</p>
 </div>
 <div align="center">

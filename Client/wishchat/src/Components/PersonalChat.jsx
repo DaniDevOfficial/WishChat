@@ -86,60 +86,67 @@ export function PersonalChat({ user, chattingWith }) {
 
     return (
         <div className=''>
-            <div className="TopPart">
-                <div className="TopLeft">
-                    <img className="ProfilePic" src={profilepic} alt="" />
-                    <div className="ChatName">
-                        <div className="ChatNameName">
-                            {chattingWith}
-                        </div>
-                        <div className="ChatNameStatus">
-                            { /** Here for Staus but later */}
+            {chattingWith ? (
+                <div className="TopPart">
+                    <div className="TopLeft">
+                        <img className="ProfilePic" src={profilepic} alt="" />
+                        <div className="ChatName">
+                            <div className="ChatNameName">
+                                {chattingWith}
+                            </div>
+                            <div className="ChatNameStatus">
+                                { /** Here for Status but later */}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className=''>
+            ) : (
+                <div className="NoChattingWith">
+                    Start Chatting by adding new friends or continue chatting with them
+                </div>
+            )}
 
-                <div className="MessagesContainer">
-                    <h2>Messages:</h2>
-                    {filteredmessages.map((message, index) => (
-                        <div className="SingleMessageContainer" key={index}>
-                            <div className={`SingleMessage ${message.name === userName ? 'mymessage' : 'notmymessage'}`}>
-                                <div className="SingleMessageName">
-                                    {message.name}
-                                    ({message.sentDate}):
-                                </div>
-                                <div className="SingleMessageDate">
-
-                                </div>
-                                <div className="SingleMessageMessage">
-                                {message.message}
-
+            {chattingWith && (
+                <div className=''>
+                    <div className="MessagesContainer">
+                        <h2>Messages:</h2>
+                        {filteredmessages.map((message, index) => (
+                            <div className="SingleMessageContainer" key={index}>
+                                <div className={`SingleMessage ${message.name === userName ? 'mymessage' : 'notmymessage'}`}>
+                                    <div className="SingleMessageName">
+                                        {message.name} ({message.sentDate}):
+                                    </div>
+                                    <div className="SingleMessageDate">
+                                        {/* Add date content here */}
+                                    </div>
+                                    <div className="SingleMessageMessage">
+                                        {message.message}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
-                <div ref={bottomRef}></div>
+                        ))}
+                    </div>
+                    <div ref={bottomRef}></div>
 
-                <div className="BottomPart">
-                    <form className="newMessageForm" onSubmit={handleSubmit}>
-                        <input
-                            className="messageInput"
-                            name="message"
-                            placeholder='New Message ...'
-                            value={formData.message}
-                            onChange={handleInputChange}
-                            required={true}
-                            maxLength={100}
-                        />
-                        <button className='sendMessage' onClick={handleSubmit}>
-                            <FaPaperPlane className='icon' />
-                        </button>
-                    </form>
+                    <div className="BottomPart">
+                        <form className="newMessageForm" onSubmit={handleSubmit}>
+                            <input
+                                className="messageInput"
+                                name="message"
+                                placeholder='New Message ...'
+                                value={formData.message}
+                                onChange={handleInputChange}
+                                required={true}
+                                maxLength={100}
+                            />
+                            <button className='sendMessage' onClick={handleSubmit}>
+                                <FaPaperPlane className='icon' />
+                            </button>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
+
     );
 }

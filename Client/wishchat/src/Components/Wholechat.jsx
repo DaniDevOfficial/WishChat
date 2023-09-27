@@ -6,7 +6,7 @@ import '../Styles/WholeChat.css'
 export function WholeChat({ me }) {
 
     const [user, setUser] = useState(me || "dani");
-    const [chattingWith, setChattingWith] = useState("a")
+    const [chattingWith, setChattingWith] = useState()
 
     return (
         <>
