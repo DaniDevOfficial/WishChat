@@ -6,7 +6,7 @@ import { FaPaperPlane } from 'react-icons/fa';
 
 export function PersonalChat({ user, chattingWith }) {
     const userName = user;
-    const chattingwith = chattingWith;
+    let chattingwith = chattingWith;
 
     useEffect(() => {
         if (bottomRef.current) {
@@ -14,13 +14,19 @@ export function PersonalChat({ user, chattingWith }) {
         }
     }, [chattingwith]);
 
-    const [formData, setFormData] = useState({
-        name: `${userName}`,
-        message: '',
-        recipient: `${chattingwith}`,
-        sentDate: null,
-    });
+    console.log(chattingWith)
 
+    const initialFormData = {
+        name: userName,
+        message: '',
+        recipient: chattingwith,
+        sentDate: null,
+      };
+      const [formData, setFormData] = useState(initialFormData);
+      useEffect(() => {
+        setFormData({ ...formData, recipient: chattingwith });
+      }, [chattingwith]);
+    console.log(formData)
     const [messagesArray, setMessagesArray] = useState([]);
     const database = getDatabase();
     const bottomRef = useRef(null);
@@ -32,30 +38,29 @@ export function PersonalChat({ user, chattingWith }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
+    
         const trimmedMessage = formData.message.trim();
-
+    
         if (trimmedMessage !== "") {
             const sentDate = new Date().toLocaleString();
             const messagesRef = ref(database, 'messages');
-
+    
             push(messagesRef, { ...formData, message: trimmedMessage, sentDate });
-
+    
             setFormData({
                 name: `${userName}`,
                 message: '',
                 recipient: `${chattingwith}`,
                 sentDate: null,
             });
-
-            // Scroll to the bottom after adding a new message
-            if (bottomRef.current) {
+    
+            setTimeout(() => {
                 bottomRef.current.scrollIntoView({});
-            }
+            }, 10); 
         } else {
-
         }
     };
+    
 
     useEffect(() => {
         const messagesRef = ref(database, 'messages');
