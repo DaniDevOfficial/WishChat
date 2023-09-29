@@ -21,11 +21,11 @@ export function PersonalChat({ user, chattingWith }) {
         message: '',
         recipient: chattingwith,
         sentDate: null,
-      };
-      const [formData, setFormData] = useState(initialFormData);
-      useEffect(() => {
+    };
+    const [formData, setFormData] = useState(initialFormData);
+    useEffect(() => {
         setFormData({ ...formData, recipient: chattingwith });
-      }, [chattingwith]);
+    }, [chattingwith]);
     console.log(formData)
     const [messagesArray, setMessagesArray] = useState([]);
     const database = getDatabase();
@@ -38,29 +38,37 @@ export function PersonalChat({ user, chattingWith }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-    
+
         const trimmedMessage = formData.message.trim();
-    
+
         if (trimmedMessage !== "") {
-            const sentDate = new Date().toLocaleString();
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = (now.getMonth() + 1).toString().padStart(2, '0');
+            const day = now.getDate().toString().padStart(2, '0');
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+
+            const sentDate = `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
             const messagesRef = ref(database, 'messages');
-    
+
             push(messagesRef, { ...formData, message: trimmedMessage, sentDate });
-    
+
             setFormData({
                 name: `${userName}`,
                 message: '',
                 recipient: `${chattingwith}`,
                 sentDate: null,
             });
-    
+
             setTimeout(() => {
                 bottomRef.current.scrollIntoView({});
-            }, 10); 
+            }, 10);
         } else {
         }
     };
-    
+
 
     useEffect(() => {
         const messagesRef = ref(database, 'messages');
@@ -73,7 +81,6 @@ export function PersonalChat({ user, chattingWith }) {
                 });
                 setMessagesArray(messages);
 
-                // Scroll to the bottom when messages update
                 if (bottomRef.current) {
                     bottomRef.current.scrollIntoView({});
                 }
@@ -88,6 +95,13 @@ export function PersonalChat({ user, chattingWith }) {
     const filteredmessages = messagesArray.filter(
         message => (message.name === userName && message.recipient === chattingwith) || (message.name === chattingwith && message.recipient === userName)
     );
+    const formatTimestamp = (timestamp) => {
+        
+        const date = new Date(timestamp);
+        const hour = date.getHours().toString().padStart(2, '0'); // Get hours with leading zero if needed
+        const minute = date.getMinutes().toString().padStart(2, '0'); // Get minutes with leading zero if needed
+        return `${hour}:${minute}`;
+    };
 
     return (
         <div className=''>
@@ -119,7 +133,11 @@ export function PersonalChat({ user, chattingWith }) {
                             <div className="SingleMessageContainer" key={index}>
                                 <div className={`SingleMessage ${message.name === userName ? 'mymessage' : 'notmymessage'}`}>
                                     <div className="SingleMessageName">
-                                        {message.name} ({message.sentDate}):
+                                        {message.name}
+                                        :
+                                        <div className="SingleMessageDate">
+                                            {formatTimestamp(message.sentDate)}
+                                        </div>
                                     </div>
                                     <div className="SingleMessageDate">
                                         {/* Add date content here */}
