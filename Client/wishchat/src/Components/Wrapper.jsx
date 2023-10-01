@@ -10,10 +10,8 @@ export function Wrapper() {
   return (
     <Router>
       <Routes>
-
         <Route path="/" element={<SimpleAccount setMe={setMe}/>} />
         <Route path="/Chat" element={<WholeChat me={me}/>} />
-
       </Routes>
     </Router>
   );

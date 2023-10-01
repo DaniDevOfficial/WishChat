@@ -21,7 +21,11 @@ export function SimpleChat({ user, setChattingWith }) {
         setChattingWith(wantToChatWith)
         setWantToChatWith('');
     }
-
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setChattingWith(wantToChatWith)
+        setWantToChatWith('');
+    }
     const [messagesArray, setMessagesArray] = useState([]);
     const database = getDatabase();
 
@@ -97,7 +101,7 @@ export function SimpleChat({ user, setChattingWith }) {
                         </div>
                     ))}
                     <hr />
-                    <form className='addNewFriend'>
+                    <form className='addNewFriend' onSubmit={handleSubmit}>
                         <div className="subtitle">Add a new Friend</div>
                         <input
                             className='NewFriendInput'
@@ -113,13 +117,14 @@ export function SimpleChat({ user, setChattingWith }) {
                     <div
                         className="buttonContainer"
                     >
-                        <button
-                            onClick={newChat}
+                        <input
+                        type='submit'
                             className={`newChatButton ${!wantToChatWith ? 'disabledButton' : ''}`}
                             disabled={!wantToChatWith}
+                            value={"+"}
                         >
-                            +
-                        </button>
+                            
+                        </input>
                     </div>
 
 
