@@ -7,7 +7,6 @@ export function SimpleChat({ user, setChattingWith }) {
     const userName = user
 
     const [wantToChatWith, setWantToChatWith] = useState()
-    const [wantToChatWithTemp, setWantToChatWithTemp] = useState()
 
     const handleChattingWithChange = (event) => {
         setWantToChatWith(event.target.value)
@@ -17,10 +16,7 @@ export function SimpleChat({ user, setChattingWith }) {
         setChattingWith(name);
     };
 
-    function newChat() {
-        setChattingWith(wantToChatWith)
-        setWantToChatWith('');
-    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         setChattingWith(wantToChatWith)
@@ -126,8 +122,6 @@ export function SimpleChat({ user, setChattingWith }) {
                             
                         </input>
                     </div>
-
-
                 </div>
             </div>
         </div>
