@@ -6,7 +6,7 @@ import { FaPaperPlane } from 'react-icons/fa';
 
 export function PersonalChat({ user, chattingWith }) {
     const userName = user;
-    let chattingwith = chattingWith;
+    let chattingwith = "a";
 
     useEffect(() => {
         if (bottomRef.current) {
@@ -98,8 +98,8 @@ export function PersonalChat({ user, chattingWith }) {
     const formatTimestamp = (timestamp) => {
         
         const date = new Date(timestamp);
-        const hour = date.getHours().toString().padStart(2, '0'); // Get hours with leading zero if needed
-        const minute = date.getMinutes().toString().padStart(2, '0'); // Get minutes with leading zero if needed
+        const hour = date.getHours().toString().padStart(2, '0');
+        const minute = date.getMinutes().toString().padStart(2, '0');
         return `${hour}:${minute}`;
     };
 
