@@ -1,15 +1,10 @@
-h1 {
-    font-size: 100px;
-    text-align: center;
-    text-transform: uppercase;
-    font-family: "Montserrat", sans-serif;
-    margin-top: 200px;
-  }
+
   
   .page-reveal {
     position: fixed;
     inset: 0;
     pointer-events: none;
+    z-index: 100;
   }
   
   .page-reveal .element {
