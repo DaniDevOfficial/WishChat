@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../Styles/Reveal.css'; 
 
-export function Welcome() {
+export function WelcomeAnimation() {
 
 
     return (

@@ -1,11 +1,11 @@
 import { Wrapper } from "./Components/Wrapper";
-import { Welcome } from "./Components/Welcome";
+import { WelcomeSite } from "./Components/WelcomeSite";
 import './App.css'
 function App() {
 
   return (
     <div className="App">
-      <Wrapper /> 
+      <WelcomeSite /> 
     </div>
   );
 }
