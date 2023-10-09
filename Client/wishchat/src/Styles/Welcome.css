@@ -4,16 +4,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10vh;
+    margin: 30px;
+    height: 90vh;
 }
 .WelcomeWrapper{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     padding: 30px;
-    min-width: 80vw;
+    margin-top: 5vh;
+    width: 80vw;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    gap: 30px;
+}
+
+.WelcomeTextContainer{
+    text-align: center;
+}
+.MainWelcome{
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.WelcomeImageContainer img{
+    width: 50vw;
 }
