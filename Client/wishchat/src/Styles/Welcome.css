@@ -28,7 +28,9 @@
     font-weight: bold;
     font-size: 3rem;
 }
-
+.SecondaryWelcome{
+    text-align: start;
+}
 .WelcomeImageContainer img{
     width: 50vw;
 }
