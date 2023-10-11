@@ -6,7 +6,7 @@ import { FaPaperPlane } from 'react-icons/fa';
 
 export function PersonalChat({ user, chattingWith }) {
     const userName = user;
-    let chattingwith = "a";
+    let chattingwith = chattingWith;
 
     useEffect(() => {
         if (bottomRef.current) {

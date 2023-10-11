@@ -5,11 +5,11 @@
     justify-content: center;
     align-items: center;
     margin: 30px;
-    height: 90vh;
 }
 .WelcomeWrapper{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
     flex-direction: row;
     padding: 30px;
@@ -23,6 +23,7 @@
 
 .WelcomeTextContainer{
     text-align: center;
+    width: 500px;
 }
 .MainWelcome{
     font-weight: bold;
@@ -32,5 +33,5 @@
     text-align: start;
 }
 .WelcomeImageContainer img{
-    width: 50vw;
+    width: 600px;
 }
