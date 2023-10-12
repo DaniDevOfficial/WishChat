@@ -33,7 +33,7 @@
     font-weight: 1000;
     font-size: 3rem;
     @media (max-width: 850px) {
-        font-size: 2rem;
+        font-size: 3rem;
 
     }
 
@@ -45,7 +45,6 @@
 }
 .SignUpContainer{
     margin-top: 30px;
-    margin: 30px 30px;
 }
 .Subtitle{
     font-size: 1.6rem;
@@ -94,7 +93,14 @@
 
     }
 }
-
+@media (max-width: 850px) {
+.WelcomeImageContainer{
+    width: 70vw;
+}
+.WelcomeTextContainer{
+    width: 70vw;
+}
+}
 @keyframes shine {
     to {
       background-position: 200% center;
