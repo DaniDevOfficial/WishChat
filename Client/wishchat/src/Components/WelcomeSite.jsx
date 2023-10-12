@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../Styles/Welcome.css'
 import Layout from "../Images/Layout idea.jpg"
 import { WelcomeAnimation } from "./WelcomeAnimation"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export function WelcomeSite({ setMe }) {
     const [name, setName] = useState('');
@@ -26,11 +26,12 @@ export function WelcomeSite({ setMe }) {
                         Welcome to WishChat
                     </div>
                     <div className="SecondaryWelcome">
-                        This is a small Chatapp created with react and currently with a firebase backend but enjoy your time on it.
+                        Welcome to WishChat, a small Chatapp created with React and currently powered by a Firebase backend. We hope you enjoy your time on our platform and have meaningful and intuitive conversations with friends and strangers.
                     </div>
                     <div className="SignUpContainer">
+
+
                         <form onSubmit={handleSubmit}>
-                            <label htmlFor="name" class="InputLabel">Name</label>
                             <input
                                 className='AccountInput'
                                 type="text"
@@ -41,7 +42,6 @@ export function WelcomeSite({ setMe }) {
                                 required={true}
                                 placeholder='Username'
                             />
-                            <label htmlFor="password" class="InputLabel">Password</label>
 
                             <input
                                 className='AccountInput'
@@ -51,11 +51,20 @@ export function WelcomeSite({ setMe }) {
                                 required={true}
                                 placeholder='Password'
                             />
-                            <div className="buttonCenter">
-                                <input class="SubmitButton" type="submit" />
+                            <div className="disclaimer">
+                                (the account data isnt actualy stored)
                             </div>
-
+                            <div className="buttonCenter">
+                                <input
+                                    class="SubmitButton"
+                                    type="submit"
+                                    value={"Sign up"}
+                                />
+                            </div>
                         </form>
+                    </div>
+                    <div className="OrLogInText">
+                        Or <Link className="LinkTo" to="/login">Log In</Link>
                     </div>
                 </div>
 

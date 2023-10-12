@@ -26,12 +26,48 @@
     width: 500px;
 }
 .MainWelcome{
-    font-weight: bold;
+    font-weight: 1000;
     font-size: 3rem;
 }
 .SecondaryWelcome{
     text-align: start;
+    margin-top: 10px;
+    
+}
+.SignUpContainer{
+    margin-top: 30px;
+}
+.Subtitle{
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.disclaimer{
+    font-size: 14px;
+    color: #888; 
+    margin-bottom: 5px;
+    text-align: center;
+}
+.OrLogInText{
+
+}
+.LinkTo{
+    text-decoration: none;
+    color: inherit;
+    transform: scale(1.05);
+    background-image: linear-gradient(to left, #8A2BE2, #9400D3, #4B0082, #008B8B, #008B8B, #4B0082, #9400D3, #8A2BE2);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
 }
 .WelcomeImageContainer img{
     width: 600px;
 }
+
+
+@keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }

@@ -114,7 +114,8 @@ export function SimpleChat({ user, setChattingWith }) {
                         className="buttonContainer"
                     >
                         <input
-                        type='submit'
+                            type='submit'
+                            onClick={handleSubmit}
                             className={`newChatButton ${!wantToChatWith ? 'disabledButton' : ''}`}
                             disabled={!wantToChatWith}
                             value={"+"}
