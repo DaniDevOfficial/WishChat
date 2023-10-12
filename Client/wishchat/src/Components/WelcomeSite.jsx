@@ -64,7 +64,7 @@ export function WelcomeSite({ setMe }) {
                         </form>
                     </div>
                     <div className="OrLogInText">
-                        Or <Link className="LinkTo" to="/login">Log In</Link>
+                        Or <Link className="LinkTo" to="/SignIn">Log In</Link>
                     </div>
                 </div>
 

@@ -28,6 +28,11 @@
 .MainWelcome{
     font-weight: 1000;
     font-size: 3rem;
+    @media (max-width: 850px) {
+        font-size: 2rem;
+
+    }
+
 }
 .SecondaryWelcome{
     text-align: start;
@@ -36,6 +41,7 @@
 }
 .SignUpContainer{
     margin-top: 30px;
+    margin: 30px 30px;
 }
 .Subtitle{
     font-size: 1.6rem;
@@ -48,13 +54,14 @@
     text-align: center;
 }
 .OrLogInText{
-
+    margin-top: 10px;
+    text-align: center;
 }
 .LinkTo{
     text-decoration: none;
     color: inherit;
     transform: scale(1.05);
-    background-image: linear-gradient(to left, #8A2BE2, #9400D3, #4B0082, #008B8B, #008B8B, #4B0082, #9400D3, #8A2BE2);
+    background-image: linear-gradient(to left, #8A2BE2, #9400D3, #008B8B, #008B8B, #9400D3, #8A2BE2);
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
@@ -63,6 +70,10 @@
 }
 .WelcomeImageContainer img{
     width: 600px;
+    @media (max-width: 850px) {
+        width: 70vw;
+    }
+
 }
 
 
