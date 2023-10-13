@@ -43,7 +43,6 @@ export function WelcomeSite({ setMe }) {
     }
 
 
-
     return (
         <div className="WelcomeContainer">
             <WelcomeAnimation />

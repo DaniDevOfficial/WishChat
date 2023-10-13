@@ -1,6 +1,6 @@
 
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { SimpleAccount } from './SimpleAccount';
 import { WholeChat } from './Wholechat';
 import { WelcomeSite } from './WelcomeSite';
@@ -10,8 +10,14 @@ export function Wrapper() {
   
   const [me, setMe] = useState("")
 
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
+
+  
   return (
-    <Router>
       <Routes>
         <Route path="/" element={<WelcomeSite setMe={setMe}/>} />
         <Route path="/SignIn" element={<SimpleSignIn setMe={setMe}/>} />
@@ -19,7 +25,6 @@ export function Wrapper() {
         <Route path="/Account" element={<SimpleAccount setMe={setMe}/>} />
         <Route path="/Chat" element={<WholeChat me={me}/>} />
       </Routes>
-    </Router>
   );
 };
 
