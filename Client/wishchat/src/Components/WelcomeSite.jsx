@@ -38,11 +38,11 @@ export function WelcomeSite({ setMe }) {
     let counter = 0
     function funny() {
         counter++
-        toast.success("Your Account Got Created!! Start Learning");
 
         if (counter == 20) {
             const randomIndex = Math.floor(Math.random() * soundUrls.length);
             const audio = new Audio(soundUrls[randomIndex]);
+            toast.warning("Funny sound");
             audio.play(); counter = 0
         }
     }
