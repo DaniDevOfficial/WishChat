@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../Styles/Login.css'
+import { toast } from 'react-toastify';
 export function SimpleSignIn({ setMe }) {
     const [name, setName] = useState('');
 
@@ -10,6 +11,7 @@ export function SimpleSignIn({ setMe }) {
         setName(event.target.value);
     };
     const handleSubmit = () => {
+        toast.success("Sign in Sucessful");
         navigate(`/Chat`);
         setMe(name)
     }

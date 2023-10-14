@@ -3,6 +3,8 @@ import '../Styles/Welcome.css'
 import Layout from "../Images/Layout idea.jpg"
 import { WelcomeAnimation } from "./WelcomeAnimation"
 import { useNavigate, Link } from 'react-router-dom';
+import {  toast } from 'react-toastify';
+
 import Napoleon from "../Songs/ThersNotingWeCanDo.mp3"
 import CatSmurf from "../Songs/LLL.mp3"
 import YoungFly from "../Songs/YoungFly.mp3"
@@ -19,7 +21,8 @@ export function WelcomeSite({ setMe }) {
         setName(event.target.value);
     };
     const handleSubmit = () => {
-        navigate(`/Chat`);
+        toast.success("Sign up Sucessful");
+        navigate("/Chat")
         setMe(name)
     }
     const soundUrls = [
@@ -35,6 +38,8 @@ export function WelcomeSite({ setMe }) {
     let counter = 0
     function funny() {
         counter++
+        toast.success("Your Account Got Created!! Start Learning");
+
         if (counter == 20) {
             const randomIndex = Math.floor(Math.random() * soundUrls.length);
             const audio = new Audio(soundUrls[randomIndex]);
@@ -101,6 +106,7 @@ export function WelcomeSite({ setMe }) {
                     </div>
                     <div className="WelcomeImage" >
                         <img src="https://firebasestorage.googleapis.com/v0/b/wishchatprog2.appspot.com/o/Images%2FCapybara.png?alt=media&token=4facbe5d-1d95-49ae-b395-aa989fe74ce3&_gl=1*5nfsu0*_ga*MjAzNzYyNzU5LjE2ODM4Mjk0MDU.*_ga_CW55HF8NVT*MTY5NzExMjM2My41MS4xLjE2OTcxMTIzODMuNDAuMC4w" onClick={funny} alt="" />
+
                     </div>
 
                     <div className='WelcomeImageHaveFun'>

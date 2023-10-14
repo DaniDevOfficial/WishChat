@@ -3,6 +3,7 @@ import { getDatabase, ref, onValue, off } from 'firebase/database';
 import { Link } from 'react-router-dom';
 import '../Styles/AllChats.css'
 import profilePic from '../Images/TempProfilepic.jpeg'
+import { toast } from 'react-toastify';
 export function SimpleChat({ user, setChattingWith }) {
     const userName = user
 
@@ -20,6 +21,7 @@ export function SimpleChat({ user, setChattingWith }) {
     const handleSubmit = (event) => {
         event.preventDefault();
         setChattingWith(wantToChatWith)
+        toast.success("Added a new Friend " + wantToChatWith + ". Start by writing a message");
         setWantToChatWith('');
     }
     const [messagesArray, setMessagesArray] = useState([]);
