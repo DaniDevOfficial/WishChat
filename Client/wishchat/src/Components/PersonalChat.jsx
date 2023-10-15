@@ -96,7 +96,7 @@ export function PersonalChat({ user, chattingWith }) {
         message => (message.name === userName && message.recipient === chattingwith) || (message.name === chattingwith && message.recipient === userName)
     );
     const formatTimestamp = (timestamp) => {
-        
+
         const date = new Date(timestamp);
         const hour = date.getHours().toString().padStart(2, '0');
         const minute = date.getMinutes().toString().padStart(2, '0');
@@ -139,15 +139,19 @@ export function PersonalChat({ user, chattingWith }) {
                                             {formatTimestamp(message.sentDate)}
                                         </div>
                                     </div>
-                                    <div className="SingleMessageDate">
-                                        {/* Add date content here */}
-                                    </div>
-                                    <div className="SingleMessageMessage">
-                                        {message.message}
-                                    </div>
+                                    {message.message.startsWith("https://firebasestorage.googleapis.com") ? ( // Check if the message is an image URL
+                                        <div className="SingleMessageImage">
+                                            <img src={message.message} alt="Image" />
+                                        </div>
+                                    ) : (
+                                        <div className="SingleMessageMessage">
+                                            {message.message}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         ))}
+
                     </div>
                     <div ref={bottomRef}></div>
 
@@ -160,7 +164,6 @@ export function PersonalChat({ user, chattingWith }) {
                                 value={formData.message}
                                 onChange={handleInputChange}
                                 required={true}
-                                maxLength={100}
                             />
                             <button className='sendMessage' onClick={handleSubmit}>
                                 <FaPaperPlane className='icon' />
