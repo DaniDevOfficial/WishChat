@@ -6,9 +6,12 @@ import {
     uploadBytes,
     getDownloadURL
 } from 'firebase/storage';
+import { v4 } from 'uuid'
 
 import { storage } from '../firebaseConfig';
 import { FaPaperPlane } from 'react-icons/fa';
+import { FiUpload } from 'react-icons/fi';
+
 import { toast, ToastContainer } from 'react-toastify'; // Import Toastify
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -35,6 +38,8 @@ export function PersonalChat({ user, chattingWith }) {
         sentDate: null,
     };
     const [formData, setFormData] = useState(initialFormData);
+
+
     useEffect(() => {
         setFormData({ ...formData, recipient: chattingwith });
     }, [chattingwith]);
@@ -47,6 +52,8 @@ export function PersonalChat({ user, chattingWith }) {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
     };
+
+    const messagesRef = ref(database, 'messages');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -63,7 +70,6 @@ export function PersonalChat({ user, chattingWith }) {
             const seconds = now.getSeconds().toString().padStart(2, '0');
 
             const sentDate = `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
-            const messagesRef = ref(database, 'messages');
 
             push(messagesRef, { ...formData, message: trimmedMessage, sentDate });
 
@@ -80,8 +86,22 @@ export function PersonalChat({ user, chattingWith }) {
         } else {
         }
     };
+    const uploadFile = () => {
+        alert("url")
 
-   
+        if (imageUpload == null) return;
+        const imageRef = storageRef(storage, `image/chatUploads/${imageUpload.name + v4()}`);
+
+        uploadBytes(imageRef, imageUpload).then((snapshot) => {
+
+            getDownloadURL(snapshot.ref).then((url) => {
+                alert(url)
+
+                setImageUpload(null);
+          });
+        });
+      };
+      
 
     useEffect(() => {
         const messagesRef = ref(database, 'messages');
@@ -182,16 +202,19 @@ export function PersonalChat({ user, chattingWith }) {
                                 <FaPaperPlane className='icon' />
                             </button>
                         </form>
-                        <form className="newImageForm" onSubmit={123}>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={(event) => {
-                                    setImageUpload(event.target.files[0]);
-                                }}
-                            />
-                            <button type="submit">Upload Image</button>
-                        </form>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            id="file-input"
+                            onChange={(event) => {
+                                setImageUpload(event.target.files[0]);
+                            }}
+                        />
+                        {imageUpload && (
+                            <button className="upload-button" onClick={uploadFile}>
+                                <FiUpload className="upload-icon" />
+                            </button>
+                        )}
                     </div>
                 </div>
             )}
