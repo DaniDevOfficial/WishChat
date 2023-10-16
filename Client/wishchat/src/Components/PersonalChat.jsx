@@ -19,17 +19,11 @@ import "../Styles/UniqueChat.css";
 import profilepic from '../Images/TempProfilepic.jpeg';
 export function PersonalChat({ user, chattingWith }) {
     const [imageUpload, setImageUpload] = useState(null)
-
+    const [messagesArray, setMessagesArray] = useState([]);
+    const database = getDatabase();
+    const bottomRef = useRef(null);
     const userName = user;
-    let chattingwith = chattingWith;
-
-    useEffect(() => {
-        if (bottomRef.current) {
-            bottomRef.current.scrollIntoView();
-        }
-    }, [chattingwith]);
-
-    console.log(chattingWith)
+    let chattingwith = chattingWith
 
     const initialFormData = {
         name: userName,
@@ -39,15 +33,19 @@ export function PersonalChat({ user, chattingWith }) {
     };
     const [formData, setFormData] = useState(initialFormData);
 
+    useEffect(() => {
+        if (bottomRef.current) {
+            bottomRef.current.scrollIntoView();
+        }
+    }, [chattingwith]);
 
     useEffect(() => {
         setFormData({ ...formData, recipient: chattingwith });
     }, [chattingwith]);
     console.log(formData)
-    const [messagesArray, setMessagesArray] = useState([]);
-    const database = getDatabase();
-    const bottomRef = useRef(null);
 
+
+    
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
@@ -55,21 +53,26 @@ export function PersonalChat({ user, chattingWith }) {
 
     const messagesRef = ref(database, 'messages');
 
+    function currentDate() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        const day = now.getDate().toString().padStart(2, '0');
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+
+        return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+
+    }
     const handleSubmit = (event) => {
         event.preventDefault();
 
         const trimmedMessage = formData.message.trim();
 
         if (trimmedMessage !== "") {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = (now.getMonth() + 1).toString().padStart(2, '0');
-            const day = now.getDate().toString().padStart(2, '0');
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const seconds = now.getSeconds().toString().padStart(2, '0');
 
-            const sentDate = `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+            const sentDate = currentDate()
 
             push(messagesRef, { ...formData, message: trimmedMessage, sentDate });
 
@@ -94,12 +97,12 @@ export function PersonalChat({ user, chattingWith }) {
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
 
             getDownloadURL(snapshot.ref).then((url) => {
-                alert(url)
+                const sentDate = currentDate()
                 const messageData = {
                     name: userName,
                     message: url,
                     recipient: chattingwith,
-                    sentDate: null,
+                    sentDate: sentDate,
                   };
                 push(messagesRef, messageData)
                 .then(() => {
