@@ -87,7 +87,6 @@ export function PersonalChat({ user, chattingWith }) {
         }
     };
     const uploadFile = () => {
-        alert("url")
 
         if (imageUpload == null) return;
         const imageRef = storageRef(storage, `image/chatUploads/${imageUpload.name + v4()}`);
@@ -96,7 +95,19 @@ export function PersonalChat({ user, chattingWith }) {
 
             getDownloadURL(snapshot.ref).then((url) => {
                 alert(url)
-
+                const messageData = {
+                    name: userName,
+                    message: url,
+                    recipient: chattingwith,
+                    sentDate: null,
+                  };
+                push(messagesRef, messageData)
+                .then(() => {
+                  console.log('Message uploaded to the database');
+                })
+                .catch((error) => {
+                  console.error('Error uploading message:', error);
+                });
                 setImageUpload(null);
           });
         });
@@ -172,7 +183,7 @@ export function PersonalChat({ user, chattingWith }) {
                                             {formatTimestamp(message.sentDate)}
                                         </div>
                                     </div>
-                                    {message.message.startsWith("https://firebasestorage.googleapis.com") ? ( // Check if the message is an image URL
+                                    {message.message.startsWith("https://firebasestorage.googleapis.com") ? ( 
                                         <div className="SingleMessageImage">
                                             <img src={message.message} alt="Image" />
                                         </div>
