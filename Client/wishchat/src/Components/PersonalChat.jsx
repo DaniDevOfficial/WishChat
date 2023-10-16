@@ -1,10 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getDatabase, ref, push, onValue, off } from 'firebase/database';
-import "../Styles/UniqueChat.css"
-import profilepic from '../Images/TempProfilepic.jpeg'
-import { FaPaperPlane } from 'react-icons/fa';
+import {
+    getStorage,
+    ref as storageRef,
+    uploadBytes,
+    getDownloadURL
+} from 'firebase/storage';
 
+import { storage } from '../firebaseConfig';
+import { FaPaperPlane } from 'react-icons/fa';
+import { toast, ToastContainer } from 'react-toastify'; // Import Toastify
+import 'react-toastify/dist/ReactToastify.css';
+
+import "../Styles/UniqueChat.css";
+import profilepic from '../Images/TempProfilepic.jpeg';
 export function PersonalChat({ user, chattingWith }) {
+    const [imageUpload, setImageUpload] = useState(null)
+
     const userName = user;
     let chattingwith = chattingWith;
 
@@ -69,6 +81,7 @@ export function PersonalChat({ user, chattingWith }) {
         }
     };
 
+   
 
     useEffect(() => {
         const messagesRef = ref(database, 'messages');
@@ -168,6 +181,16 @@ export function PersonalChat({ user, chattingWith }) {
                             <button className='sendMessage' onClick={handleSubmit}>
                                 <FaPaperPlane className='icon' />
                             </button>
+                        </form>
+                        <form className="newImageForm" onSubmit={123}>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(event) => {
+                                    setImageUpload(event.target.files[0]);
+                                }}
+                            />
+                            <button type="submit">Upload Image</button>
                         </form>
                     </div>
                 </div>

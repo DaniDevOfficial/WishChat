@@ -59,6 +59,9 @@
     margin: 10px 10px;
     max-width: 60%;
 }
+.SingleMessageImage img{
+    max-width: 100%;
+}
 .mymessage{
     background-color:#00b392;
     align-self: flex-end;
