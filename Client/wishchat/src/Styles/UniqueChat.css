@@ -65,7 +65,10 @@
     margin-bottom: 5px;
 
 }
-
+.SingleMessageMessage{
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
 .mymessage{
     background-color:#00b392;
     align-self: flex-end;

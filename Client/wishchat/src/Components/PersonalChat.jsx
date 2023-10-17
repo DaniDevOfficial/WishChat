@@ -44,7 +44,6 @@ export function PersonalChat({ user, chattingWith }) {
     useEffect(() => {
         setFormData({ ...formData, recipient: chattingwith });
     }, [chattingwith]);
-    console.log(formData)
 
 
 
@@ -77,12 +76,10 @@ export function PersonalChat({ user, chattingWith }) {
         if (trimmedMessage !== "" || imageUpload) {
             const sentDate = currentDate();
 
-            formData.fileType = fileType;
+            formData.fileType = messageData.fileType;
             formData.fileURL = messageData.fileURL;
             formData.message = trimmedMessage;
             formData.sentDate = sentDate;
-            alert("watch console")
-            console.log(formData)
             push(messagesRef, formData);
 
             setFormData({
@@ -101,7 +98,11 @@ export function PersonalChat({ user, chattingWith }) {
     };
 
     const uploadFile = (fileType) => {
-        if (imageUpload == null) return;
+        const messageDataInitial = {
+            fileType: null, 
+            fileURL: null,
+        };
+        if (imageUpload == null) return (messageDataInitial);
         const imageRef = storageRef(storage, `image/chatUploads/${imageUpload.name + v4()}`);
 
         return uploadBytes(imageRef, imageUpload)

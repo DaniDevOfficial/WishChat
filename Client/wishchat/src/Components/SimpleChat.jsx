@@ -59,6 +59,8 @@ export function SimpleChat({ user, setChattingWith }) {
 
         if (content.length > 30) {
             content = content.substring(0, 30) + '...';
+        } else if (content.length == 0){
+            content = "File"
         }
 
         if (!uniqueConversations.has(key) || message.sentDate > uniqueConversations.get(key).sentDate) {
@@ -67,9 +69,13 @@ export function SimpleChat({ user, setChattingWith }) {
     });
 
     const latestMessages = Array.from(uniqueConversations.values());
+    latestMessages.sort((a, b) => {
+        const dateA = new Date(a.sentDate);
+        const dateB = new Date(b.sentDate);
+        return dateB - dateA;
+      });
 
-
-
+console.log(latestMessages)
     return (
         <div className='AllChatsContainer2'>
             <div className='AllChatsContainer'>
