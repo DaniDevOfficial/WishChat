@@ -30,6 +30,8 @@ export function PersonalChat({ user, chattingWith }) {
         message: '',
         recipient: chattingwith,
         sentDate: null,
+        fileType: null,
+        fileURL: null,
     };
     const [formData, setFormData] = useState(initialFormData);
 
@@ -45,7 +47,7 @@ export function PersonalChat({ user, chattingWith }) {
     console.log(formData)
 
 
-    
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
@@ -65,57 +67,60 @@ export function PersonalChat({ user, chattingWith }) {
         return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
 
     }
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        const fileType = "img";
+        const messageData = await uploadFile(fileType);
 
         const trimmedMessage = formData.message.trim();
 
-        if (trimmedMessage !== "") {
+        if (trimmedMessage !== "" || imageUpload) {
+            const sentDate = currentDate();
 
-            const sentDate = currentDate()
-
-            push(messagesRef, { ...formData, message: trimmedMessage, sentDate });
+            formData.fileType = fileType;
+            formData.fileURL = messageData.fileURL;
+            formData.message = trimmedMessage;
+            formData.sentDate = sentDate;
+            alert("watch console")
+            console.log(formData)
+            push(messagesRef, formData);
 
             setFormData({
                 name: `${userName}`,
                 message: '',
                 recipient: `${chattingwith}`,
                 sentDate: null,
+                fileType: null,
+                fileURL: null,
             });
 
             setTimeout(() => {
                 bottomRef.current.scrollIntoView({});
             }, 10);
-        } else {
         }
     };
-    const uploadFile = () => {
 
+    const uploadFile = (fileType) => {
         if (imageUpload == null) return;
         const imageRef = storageRef(storage, `image/chatUploads/${imageUpload.name + v4()}`);
-
-        uploadBytes(imageRef, imageUpload).then((snapshot) => {
-
-            getDownloadURL(snapshot.ref).then((url) => {
-                const sentDate = currentDate()
-                const messageData = {
-                    name: userName,
-                    message: url,
-                    recipient: chattingwith,
-                    sentDate: sentDate,
-                  };
-                push(messagesRef, messageData)
-                .then(() => {
-                  console.log('Message uploaded to the database');
-                })
-                .catch((error) => {
-                  console.error('Error uploading message:', error);
-                });
-                setImageUpload(null);
-          });
-        });
-      };
       
+        return uploadBytes(imageRef, imageUpload)
+          .then((snapshot) => getDownloadURL(snapshot.ref))
+          .then((url) => {
+            const messageData = {
+              fileType: fileType, // Use the passed fileType
+              fileURL: url,
+            };
+      
+            setImageUpload(null);
+      
+            return messageData;
+          })
+          .catch((error) => {
+            console.error('Error uploading Image:', error);
+          });
+      };
+
 
     useEffect(() => {
         const messagesRef = ref(database, 'messages');
@@ -161,7 +166,6 @@ export function PersonalChat({ user, chattingWith }) {
                                 {chattingWith}
                             </div>
                             <div className="ChatNameStatus">
-                                { /** Here for Status but later */}
                             </div>
                         </div>
                     </div>
@@ -186,9 +190,9 @@ export function PersonalChat({ user, chattingWith }) {
                                             {formatTimestamp(message.sentDate)}
                                         </div>
                                     </div>
-                                    {message.message.startsWith("https://firebasestorage.googleapis.com") ? ( 
+                                    {message.message.startsWith("https://firebasestorage.googleapis.com") ? (
                                         <div className="SingleMessageImage">
-                                            <img src={message.message} alt="Image" />
+                                            <img src={message.message} alt="wasd" />
                                         </div>
                                     ) : (
                                         <div className="SingleMessageMessage">
@@ -223,6 +227,7 @@ export function PersonalChat({ user, chattingWith }) {
                             onChange={(event) => {
                                 setImageUpload(event.target.files[0]);
                             }}
+
                         />
                         {imageUpload && (
                             <button className="upload-button" onClick={uploadFile}>
