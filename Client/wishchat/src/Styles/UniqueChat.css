@@ -43,7 +43,7 @@
 
 
 .MessagesContainer{
-    margin-bottom: 12vh;
+    margin-bottom: 15vh;
 
 }
 .SingleMessageContainer{
@@ -61,7 +61,11 @@
 }
 .SingleMessageImage img{
     max-width: 100%;
+    border-radius: 20px;
+    margin-bottom: 5px;
+
 }
+
 .mymessage{
     background-color:#00b392;
     align-self: flex-end;

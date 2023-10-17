@@ -103,23 +103,23 @@ export function PersonalChat({ user, chattingWith }) {
     const uploadFile = (fileType) => {
         if (imageUpload == null) return;
         const imageRef = storageRef(storage, `image/chatUploads/${imageUpload.name + v4()}`);
-      
+
         return uploadBytes(imageRef, imageUpload)
-          .then((snapshot) => getDownloadURL(snapshot.ref))
-          .then((url) => {
-            const messageData = {
-              fileType: fileType, // Use the passed fileType
-              fileURL: url,
-            };
-      
-            setImageUpload(null);
-      
-            return messageData;
-          })
-          .catch((error) => {
-            console.error('Error uploading Image:', error);
-          });
-      };
+            .then((snapshot) => getDownloadURL(snapshot.ref))
+            .then((url) => {
+                const messageData = {
+                    fileType: fileType, // Use the passed fileType
+                    fileURL: url,
+                };
+
+                setImageUpload(null);
+
+                return messageData;
+            })
+            .catch((error) => {
+                console.error('Error uploading Image:', error);
+            });
+    };
 
 
     useEffect(() => {
@@ -190,15 +190,16 @@ export function PersonalChat({ user, chattingWith }) {
                                             {formatTimestamp(message.sentDate)}
                                         </div>
                                     </div>
-                                    {message.message.startsWith("https://firebasestorage.googleapis.com") ? (
-                                        <div className="SingleMessageImage">
-                                            <img src={message.message} alt="wasd" />
-                                        </div>
-                                    ) : (
+
+                                        {message.fileType === "img" && (
+                                            <div className="SingleMessageImage">
+                                                <img src={message.fileURL} alt="Image" />
+                                            </div>
+                                        )}
                                         <div className="SingleMessageMessage">
                                             {message.message}
                                         </div>
-                                    )}
+
                                 </div>
                             </div>
                         ))}
@@ -229,11 +230,6 @@ export function PersonalChat({ user, chattingWith }) {
                             }}
 
                         />
-                        {imageUpload && (
-                            <button className="upload-button" onClick={uploadFile}>
-                                <FiUpload className="upload-icon" />
-                            </button>
-                        )}
                     </div>
                 </div>
             )}
