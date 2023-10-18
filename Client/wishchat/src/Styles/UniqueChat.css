@@ -1,5 +1,4 @@
-
-.TopPart{
+.TopPart {
     padding: 3vh 2vw;
     background-color: rgba(240, 248, 255);
     display: flex;
@@ -7,20 +6,23 @@
     top: 0;
     z-index: 1;
 }
-.TopLeft{
+
+.TopLeft {
     display: flex;
     align-items: center;
 }
 
-.ChatNameName{
+.ChatNameName {
     font-size: 1.7rem;
     font-weight: bold;
 }
-.ChatNameStatus{
+
+.ChatNameStatus {
     font-size: 0.7rem;
-    
+
 }
-.ProfilePic{
+
+.ProfilePic {
     display: flex;
     align-items: flex-end;
     width: 40px;
@@ -28,7 +30,8 @@
     border-radius: 50%;
     margin-right: 10px;
 }
-.NoChattingWith{
+
+.NoChattingWith {
     display: flex;
     justify-content: center;
     font-size: 2rem;
@@ -42,38 +45,57 @@
 
 
 
-.MessagesContainer{
+.MessagesContainer {
     margin-bottom: 15vh;
 
 }
-.SingleMessageContainer{
+
+.SingleMessageContainer {
     font-weight: bold;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    
+
 }
-.SingleMessage{
+
+.MessageTopPartContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 10px;
+  }
+  
+  .SingleMessageDate {
+    font-size: 10px; 
+    color: #424242;
+  }
+  
+.SingleMessage {
     padding: 6px 20px;
     border-radius: 20px;
     margin: 10px 10px;
     max-width: 60%;
 }
-.SingleMessageImage img{
+
+.SingleMessageImage img {
     max-width: 100%;
     border-radius: 20px;
     margin-bottom: 5px;
 
 }
-.SingleMessageMessage{
+
+.SingleMessageMessage {
     max-width: 100%;
     overflow-wrap: break-word;
 }
-.mymessage{
-    background-color:#00b392;
+
+.mymessage {
+    background-color: #00b392;
     align-self: flex-end;
 }
-.notmymessage{
+
+.notmymessage {
     background-color: rgb(150, 150, 150);
     align-self: flex-start;
 
@@ -85,8 +107,8 @@
 
 
 
-.BottomPart{
-    position: fixed;   
+.BottomPart {
+    position: fixed;
     bottom: 0;
     z-index: 1;
     background-color: rgba(240, 248, 255);
@@ -94,7 +116,8 @@
     width: 100%;
     align-self: center;
 }
-.messageInput{
+
+.messageInput {
     outline: none;
     border: none;
     background-color: rgb(186, 192, 197);
@@ -103,7 +126,7 @@
     width: 50vw
 }
 
-.sendMessage{
+.sendMessage {
     outline: none;
     border: none;
     padding: 10px;
@@ -112,5 +135,5 @@
 }
 
 .icon {
-    color: rgb(0, 0, 0); 
-  }
+    color: rgb(0, 0, 0);
+}

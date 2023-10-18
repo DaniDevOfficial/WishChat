@@ -99,7 +99,7 @@ export function PersonalChat({ user, chattingWith }) {
 
     const uploadFile = (fileType) => {
         const messageDataInitial = {
-            fileType: null, 
+            fileType: null,
             fileURL: null,
         };
         if (imageUpload == null) return (messageDataInitial);
@@ -109,7 +109,7 @@ export function PersonalChat({ user, chattingWith }) {
             .then((snapshot) => getDownloadURL(snapshot.ref))
             .then((url) => {
                 const messageData = {
-                    fileType: fileType, // Use the passed fileType
+                    fileType: fileType,
                     fileURL: url,
                 };
 
@@ -185,21 +185,26 @@ export function PersonalChat({ user, chattingWith }) {
                             <div className="SingleMessageContainer" key={index}>
                                 <div className={`SingleMessage ${message.name === userName ? 'mymessage' : 'notmymessage'}`}>
                                     <div className="SingleMessageName">
-                                        {message.name}
-                                        :
-                                        <div className="SingleMessageDate">
-                                            {formatTimestamp(message.sentDate)}
+                                        <div className="MessageTopPartContainer">
+                                            <div>
+                                                {message.name}
+                                            </div>
+                                            
+                                            <div className="SingleMessageDate">
+                                                {formatTimestamp(message.sentDate)}
+                                            </div>
+
                                         </div>
                                     </div>
 
-                                        {message.fileType === "img" && (
-                                            <div className="SingleMessageImage">
-                                                <img src={message.fileURL} alt="Image" />
-                                            </div>
-                                        )}
-                                        <div className="SingleMessageMessage">
-                                            {message.message}
+                                    {message.fileType === "img" && (
+                                        <div className="SingleMessageImage">
+                                            <img src={message.fileURL} alt="Image" />
                                         </div>
+                                    )}
+                                    <div className="SingleMessageMessage">
+                                        {message.message}
+                                    </div>
 
                                 </div>
                             </div>
