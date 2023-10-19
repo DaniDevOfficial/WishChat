@@ -9,7 +9,7 @@ import {
 import { v4 } from 'uuid'
 
 import { storage } from '../firebaseConfig';
-import { FaPaperPlane } from 'react-icons/fa';
+import { FaPaperPlane, FaFileImage, FaTimes } from 'react-icons/fa';
 import { FiUpload } from 'react-icons/fi';
 
 import { toast, ToastContainer } from 'react-toastify'; // Import Toastify
@@ -19,6 +19,8 @@ import "../Styles/UniqueChat.css";
 import profilepic from '../Images/TempProfilepic.jpeg';
 export function PersonalChat({ user, chattingWith }) {
     const [imageUpload, setImageUpload] = useState(null)
+    const [showRemoveIcon, setShowRemoveIcon] = useState(false);
+
     const [messagesArray, setMessagesArray] = useState([]);
     const database = getDatabase();
     const bottomRef = useRef(null);
@@ -96,7 +98,11 @@ export function PersonalChat({ user, chattingWith }) {
             }, 10);
         }
     };
-
+    const handleImageChange = (event) => {
+        const selectedImage = event.target.files[0];
+        setImageUpload(selectedImage);
+        setShowRemoveIcon(!!selectedImage); // Show "x" icon if an image is selected
+      };
     const uploadFile = (fileType) => {
         const messageDataInitial = {
             fileType: null,
@@ -104,7 +110,6 @@ export function PersonalChat({ user, chattingWith }) {
         };
         if (imageUpload == null) return (messageDataInitial);
         const imageRef = storageRef(storage, `image/chatUploads/${imageUpload.name + v4()}`);
-
         return uploadBytes(imageRef, imageUpload)
             .then((snapshot) => getDownloadURL(snapshot.ref))
             .then((url) => {
@@ -122,6 +127,11 @@ export function PersonalChat({ user, chattingWith }) {
             });
     };
 
+    const handleRemoveImage = (e) => {
+        e.preventDefault();
+        setImageUpload(null);
+        setShowRemoveIcon(false);
+      };
 
     useEffect(() => {
         const messagesRef = ref(database, 'messages');
@@ -189,7 +199,7 @@ export function PersonalChat({ user, chattingWith }) {
                                             <div>
                                                 {message.name}
                                             </div>
-                                            
+
                                             <div className="SingleMessageDate">
                                                 {formatTimestamp(message.sentDate)}
                                             </div>
@@ -230,12 +240,19 @@ export function PersonalChat({ user, chattingWith }) {
                         <input
                             type="file"
                             accept="image/*"
-                            id="file-input"
-                            onChange={(event) => {
-                                setImageUpload(event.target.files[0]);
-                            }}
+                            id="FileInput"
+                            onChange={handleImageChange}
 
                         />
+                        {showRemoveIcon ? ( 
+                            <label className="CustomFileInput" htmlFor="FileInput">
+                                <FaTimes onClick={handleRemoveImage} />
+                            </label>
+                        ) : (
+                            <label className="CustomFileInput" htmlFor="FileInput">
+                                <FaFileImage />
+                            </label>
+                        )}
                     </div>
                 </div>
             )}
