@@ -12,7 +12,7 @@ import { storage } from '../firebaseConfig';
 import { FaPaperPlane, FaFileImage, FaTimes } from 'react-icons/fa';
 import { FiUpload } from 'react-icons/fi';
 
-import { toast, ToastContainer } from 'react-toastify'; // Import Toastify
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import "../Styles/UniqueChat.css";
@@ -155,9 +155,11 @@ export function PersonalChat({ user, chattingWith }) {
         };
     }, [database]);
 
-    const filteredmessages = messagesArray.filter(
-        message => (message.name === userName && message.recipient === chattingwith) || (message.name === chattingwith && message.recipient === userName)
+    const filteredmessages = messagesArray.filter(message => 
+        (message.name.toLowerCase() === userName.toLowerCase() && message.recipient.toLowerCase() === chattingwith.toLowerCase()) ||
+        (message.name.toLowerCase() === chattingwith.toLowerCase() && message.recipient.toLowerCase() === userName.toLowerCase())
     );
+    
     const formatTimestamp = (timestamp) => {
 
         const date = new Date(timestamp);

@@ -46,9 +46,10 @@ export function SimpleChat({ user, setChattingWith }) {
         };
     }, [database]);
 
-    const filteredChatsWith = messagesArray.filter(
-        message => message.name === userName || message.recipient === userName
+    const filteredChatsWith = messagesArray.filter(message =>
+        message.name.toLowerCase() === userName.toLowerCase() || message.recipient.toLowerCase() === userName.toLowerCase()
     );
+    
 
     const uniqueConversations = new Map();
 
