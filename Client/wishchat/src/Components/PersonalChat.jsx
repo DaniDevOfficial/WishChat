@@ -17,6 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import "../Styles/UniqueChat.css";
 import profilepic from '../Images/TempProfilepic.jpeg';
+import { Tooltip } from './SmallComps/Tooltip';
 export function PersonalChat({ user, chattingWith }) {
     const [imageUpload, setImageUpload] = useState(null)
     const [showRemoveIcon, setShowRemoveIcon] = useState(false);
@@ -102,7 +103,7 @@ export function PersonalChat({ user, chattingWith }) {
         const selectedImage = event.target.files[0];
         setImageUpload(selectedImage);
         setShowRemoveIcon(!!selectedImage);
-      };
+    };
     const uploadFile = (fileType) => {
         const messageDataInitial = {
             fileType: null,
@@ -131,7 +132,7 @@ export function PersonalChat({ user, chattingWith }) {
         e.preventDefault();
         setImageUpload(null);
         setShowRemoveIcon(false);
-      };
+    };
 
     useEffect(() => {
         const messagesRef = ref(database, 'messages');
@@ -155,11 +156,11 @@ export function PersonalChat({ user, chattingWith }) {
         };
     }, [database]);
 
-    const filteredmessages = messagesArray.filter(message => 
+    const filteredmessages = messagesArray.filter(message =>
         (message.name.toLowerCase() === userName.toLowerCase() && message.recipient.toLowerCase() === chattingwith.toLowerCase()) ||
         (message.name.toLowerCase() === chattingwith.toLowerCase() && message.recipient.toLowerCase() === userName.toLowerCase())
     );
-    
+
     const formatTimestamp = (timestamp) => {
 
         const date = new Date(timestamp);
@@ -246,14 +247,19 @@ export function PersonalChat({ user, chattingWith }) {
                             onChange={handleImageChange}
 
                         />
-                        {showRemoveIcon ? ( 
-                            <label className="CustomFileInput" htmlFor="FileInput">
-                                <FaTimes onClick={handleRemoveImage} />
-                            </label>
+                        {showRemoveIcon ? (
+                            <Tooltip text={"Remove Image"}>
+                                <label className="CustomFileInput" htmlFor="FileInput">
+                                    <FaTimes onClick={handleRemoveImage} />
+                                </label>
+                            </Tooltip>
+
                         ) : (
-                            <label className="CustomFileInput" htmlFor="FileInput">
-                                <FaFileImage />
-                            </label>
+                            <Tooltip text={"Add Image"}>
+                                <label className="CustomFileInput" htmlFor="FileInput">
+                                    <FaFileImage />
+                                </label>
+                            </Tooltip>
                         )}
                     </div>
                 </div>
