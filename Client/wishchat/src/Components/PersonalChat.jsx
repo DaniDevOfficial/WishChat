@@ -101,7 +101,7 @@ export function PersonalChat({ user, chattingWith }) {
     const handleImageChange = (event) => {
         const selectedImage = event.target.files[0];
         setImageUpload(selectedImage);
-        setShowRemoveIcon(!!selectedImage); // Show "x" icon if an image is selected
+        setShowRemoveIcon(!!selectedImage);
       };
     const uploadFile = (fileType) => {
         const messageDataInitial = {
@@ -195,7 +195,7 @@ export function PersonalChat({ user, chattingWith }) {
                         <h2>Messages:</h2>
                         {filteredmessages.map((message, index) => (
                             <div className="SingleMessageContainer" key={index}>
-                                <div className={`SingleMessage ${message.name === userName ? 'mymessage' : 'notmymessage'}`}>
+                                <div className={`SingleMessage ${message.name.toLowerCase() === userName.toLowerCase() ? 'mymessage' : 'notmymessage'}`}>
                                     <div className="SingleMessageName">
                                         <div className="MessageTopPartContainer">
                                             <div>

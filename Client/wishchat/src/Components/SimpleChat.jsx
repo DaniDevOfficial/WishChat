@@ -54,8 +54,8 @@ export function SimpleChat({ user, setChattingWith }) {
     const uniqueConversations = new Map();
 
     filteredChatsWith.forEach(message => {
-        const isMyMessage = message.name === userName;
-        const key = isMyMessage ? message.recipient : message.name;
+        const isMyMessage = message.name.toLowerCase() === userName.toLowerCase();
+        const key = isMyMessage ? message.recipient.toLowerCase() : message.name.toLowerCase();
         let content = message.message;
 
         if (content.length > 30) {
@@ -73,10 +73,17 @@ export function SimpleChat({ user, setChattingWith }) {
     latestMessages.sort((a, b) => {
         const dateA = new Date(a.sentDate);
         const dateB = new Date(b.sentDate);
+    
+        const nameA = a.name.charAt(0).toUpperCase() + a.name.slice(1);
+        const nameB = b.name.charAt(0).toUpperCase() + b.name.slice(1);
+    
+        a.name = nameA;
+        b.name = nameB;
+    
         return dateB - dateA;
-      });
+    });
+    
 
-console.log(latestMessages)
     return (
         <div className='AllChatsContainer2'>
             <div className='AllChatsContainer'>

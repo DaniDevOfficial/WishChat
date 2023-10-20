@@ -8,7 +8,7 @@ export function SimpleSignUp({ setMe }) {
     let navigate = useNavigate();
 
     const handleNameChange = (event) => {
-        setName(event.target.value);
+        setName(event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1));
     };
     const handleSubmit = () => {
         toast.success("Sign up Sucessful");
