@@ -4,7 +4,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 30px;
 }
 .WelcomeWrapper{
     display: flex;
@@ -23,7 +22,6 @@
         flex-direction: column-reverse;
     }
 }
-
 .WelcomeTextContainer{
     text-align: center;
     width: 500px;
