@@ -113,8 +113,10 @@ export function WelcomeSite({ setMe }) {
                         Have Fun Chatting
                     </div>
                 </div>
+                <Link to="/testing">Testing</Link>
 
             </div>
         </div>
+
     )
 }
