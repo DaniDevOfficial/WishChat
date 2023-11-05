@@ -4,8 +4,7 @@ function MessageDisplay() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    // Make a GET request to your Express API endpoint
-    fetch('http://localhost:5000/api/messages') // Assuming your React app is running on the same host as the API
+    fetch('http://localhost:5000/api/messages') 
       .then((response) => response.json())
       .then((data) => setMessages(data))
       .catch((error) => console.error('Error fetching data:', error));
