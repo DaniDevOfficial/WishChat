@@ -9,7 +9,7 @@ import { WholeChat } from './Wholechat';
 import { WelcomeSite } from './WelcomeSite';
 import { SimpleSignIn } from './SimpleSignIn';
 import { SimpleSignUp } from './SimpleSignUp';
-import { BackendFrontend } from './BackendFrontend';
+import MessageDisplay  from './BackendFrontend';
 export function Wrapper() {
 
   const [me, setMe] = useState("")
@@ -28,7 +28,7 @@ export function Wrapper() {
         <Route path="/SignUp" element={<SimpleSignUp setMe={setMe} />} />
         <Route path="/Account" element={<SimpleAccount setMe={setMe} />} />
         <Route path="/Chat" element={<WholeChat me={me} />} />
-        <Route path="/Test" element={<BackendFrontend/>} />
+        <Route path="/Test" element={<MessageDisplay/>} />
       </Routes>
       <ToastContainer />
 
