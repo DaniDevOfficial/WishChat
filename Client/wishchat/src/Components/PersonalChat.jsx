@@ -89,8 +89,13 @@ export function PersonalChat({ user, chattingWith }) {
             formData.fileURL = messageData.fileURL;
             formData.message = trimmedMessage;
             formData.sentDate = sentDate;
-            socket.emit('send message', formData);
+            if (socket.connected) {
 
+            socket.emit('send message', formData);
+            } else {
+                const messagesRef = ref(database, 'messages');
+                push(messagesRef, formData);
+            }
             setFormData({
                 name: `${userName}`,
                 message: '',
