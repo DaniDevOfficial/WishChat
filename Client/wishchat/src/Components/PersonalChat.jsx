@@ -32,6 +32,7 @@ export function PersonalChat({ user, chattingWith }) {
     const userName = user;
     let chattingwith = chattingWith
 
+    
     const initialFormData = {
         name: userName,
         message: '',
