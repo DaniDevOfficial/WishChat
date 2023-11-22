@@ -11,6 +11,7 @@ import { v4 } from 'uuid'
 import { storage } from '../firebaseConfig';
 import { FaPaperPlane, FaFileImage, FaTimes } from 'react-icons/fa';
 import { FiUpload } from 'react-icons/fi';
+import { io } from 'socket.io-client';
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,6 +19,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import "../Styles/UniqueChat.css";
 import profilepic from '../Images/TempProfilepic.jpeg';
 import { Tooltip } from './SmallComps/Tooltip';
+
+
+const socket = io('http://localhost:3001/');
 export function PersonalChat({ user, chattingWith }) {
     const [imageUpload, setImageUpload] = useState(null)
     const [showRemoveIcon, setShowRemoveIcon] = useState(false);
@@ -36,6 +40,7 @@ export function PersonalChat({ user, chattingWith }) {
         fileType: null,
         fileURL: null,
     };
+
     const [formData, setFormData] = useState(initialFormData);
 
     useEffect(() => {
@@ -83,7 +88,7 @@ export function PersonalChat({ user, chattingWith }) {
             formData.fileURL = messageData.fileURL;
             formData.message = trimmedMessage;
             formData.sentDate = sentDate;
-            push(messagesRef, formData);
+            socket.emit('send message', formData);
 
             setFormData({
                 name: `${userName}`,

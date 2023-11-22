@@ -1,8 +1,8 @@
 /Backend/node_modules/
 
 /Backend/serviceAccountKey.json
-/Backend/firebaseconfig.js
+/Backend/firebaseConfig.jsx
 
-/Client/wishchat/firebaseconfig.js
+/Client/wishchat/firebaseConfig.jsx
 /Client/wishchat/node_modules/
 
