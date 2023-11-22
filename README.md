@@ -1,10 +1,10 @@
 
 <div align='center'>
-    <h1><b>WishChat</b></h1>
-    <p>A simple software to Chat with Friends and also in Groups.</p>
+    <h1><b>Wishlingo</b></h1>
+    <p>A simple software to learn new languages by completing sentences.</p>
 </div>
 <div align="center">
-    <img src="https://firebasestorage.googleapis.com/v0/b/wishchatprog2.appspot.com/o/Images%2FMinimalist%20Black%20Beige%20Typography%20Fashion%20Business%20Logo.png?alt=media&token=6c68995f-4485-4955-bea6-6c3d12b0091f" alt="Description of the Image" style="width: 300px; border-radius: 10px;">
+    <img src="https://firebasestorage.googleapis.com/v0/b/wishlingode.appspot.com/o/Logo%2FWishlingo.png?alt=media&token=e0e982dc-839c-4951-80fb-75352ef85fad" alt="Description of the Image" style="width: 300px; border-radius: 10px;">
 
 </div>
 
@@ -12,21 +12,17 @@
 
 ## About
 
-WishChat is a simple Chat app where the user is able to send and recive messages form Single People or even groups. In adition the user can send a image attached to the Messages. Do finish later
+The goal of this project is to develop a user-friendly software for learning new languages. The application presents a sentence in one language and then displays the same sentence in another language, with a missing word that the user needs to fill in. It then provides feedback on the correctness of the input and shows the correct answer if necessary.
 
-## Technologies Used
-### Frontend
-React: The frontend of the application is built using React, a popular JavaScript library for building user interfaces.
+You can extend this basic concept by adding more features, such as multiple gaps in a sentence, an input form for adding new sentences, or multiple correct answers. However, remember that quality is more important than quantity, so prioritize a well-functioning application over adding many features with potential bugs.
 
-Socket.IO: Socket.IO is used to enable real-time communication between clients and the server. It ensures that messages are instantly delivered to all connected users.
+## Example
 
-### Backend
-Firebase: Firebase is used as the backend service for this chat application. It provides authentication, real-time database, and cloud storage, making it easy to develop and deploy a fully functional chat app.
+Original Sentence: "Working at a company is a great experience!"
+Translated Sentence: "Bei einer Firma zu arbeiten ist eine grossartige ________!"
+User Input: "Erfahrung"
+Feedback: "Correct!"
 
-
-## Tech
-
-The backend connection is established by a socket io file. React adn firebase
 
 
 ### local installation:
@@ -34,17 +30,15 @@ The backend connection is established by a socket io file. React adn firebase
 1. clone the repo
 
 ```
-git clone https://github.com/David21092/WishChat/tree/dev
+git clone https://github.com/David21092/Wishlingo
 ```
 
 2. cd into cloned repo
 
 ```
-cd wishchat
+cd Wishlingo
 ```
-```
-cd .\Client\wishchat\
-```
+
 3. install dependencies
 
 ```
@@ -64,16 +58,12 @@ npm install @firebase/app
 ```
 
 ```
-npm install react-icons/fa
-```
-
-```
 npm install react-toastify
 ```
 
 4. Create Firebase DB
 
-Due to the fact that you cant use my firebase realtime DB because i would have to give out my Tokens, you need to create your own one and just simply connect it with the app. This File should be called "firebaseConfig.jsx", its located in the src folder and should look something like this: 
+Due to the fact that you cant use my firebase realtime DB because i would have to give out my Tokens, you need to create your own one and just simply connect it with the app. This File should be called "firebase.jsx", its located in the src folder and should look something like this: 
 
 <br/>import { initializeApp } from "firebase/app";
 <br/>import { getAuth } from 'firebase/auth'
