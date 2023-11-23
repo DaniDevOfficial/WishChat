@@ -1,0 +1,54 @@
+
+  
+  .page-reveal {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+  }
+  
+  .page-reveal .element {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transform-origin: left;
+  }
+  
+  .page-reveal .element-1 {
+    background: #ff00cc;
+    transform: scaleX(0);
+    animation: revealAnim 2500ms ease;
+  }
+  
+  .page-reveal .element-2 {
+    background: #0aeaf1;
+    transform: scaleX(0);
+    animation: revealAnim 1000ms ease;
+    animation-delay: 900ms;
+  }
+  
+  .page-reveal .element-3 {
+    background: #2cf9e8;
+    animation: revealContentAnim forwards;
+    animation-delay: 1000ms;
+  }
+  
+  @keyframes revealAnim {
+    50% {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    51% {
+      transform-origin: right;
+    }
+    100% {
+      transform: scaleX(0);
+      transform-origin: right;
+    }
+  }
+  
+  @keyframes revealContentAnim {
+    to {
+      transform: scale(0);
+    }
+  }

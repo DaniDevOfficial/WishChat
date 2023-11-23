@@ -1,0 +1,17 @@
+.why{
+    position: relative;
+    display: inline-block;
+
+}
+.toolTip{
+    position: absolute;
+    top: calc(-100% - 20%);
+    transform: translateX(-40%);
+    background-color: rgb(63, 63, 63);
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    z-index: 2;
+    min-width: 100px;
+    text-align: center;
+}

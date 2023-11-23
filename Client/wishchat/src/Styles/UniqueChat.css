@@ -1,0 +1,158 @@
+.TopPart {
+    padding: 3vh 2vw;
+    background-color: rgba(240, 248, 255);
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.TopLeft {
+    display: flex;
+    align-items: center;
+}
+
+.ChatNameName {
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.ChatNameStatus {
+    font-size: 0.7rem;
+
+}
+
+.ProfilePic {
+    display: flex;
+    align-items: flex-end;
+    width: 40px;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.NoChattingWith {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 50px;
+    margin-top: 30vh;
+    text-align: center;
+}
+.MessagesContainer {
+    margin-bottom: 15vh;
+
+}
+.SingleMessageContainer {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+}
+
+.MessageTopPartContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.SingleMessageDate {
+    font-size: 10px;
+    color: #424242;
+}
+
+.SingleMessage {
+    padding: 6px 20px;
+    border-radius: 20px;
+    margin: 10px 10px;
+    max-width: 60%;
+}
+
+.SingleMessageImage img {
+    margin-top: 5px;
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 5px;
+
+}
+
+.SingleMessageMessage {
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+.mymessage {
+    background-color: #00b392;
+    align-self: flex-end;
+}
+
+.notmymessage {
+    background-color: rgb(150, 150, 150);
+    align-self: flex-start;
+
+}
+
+.Date{
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+}
+.BottomPart {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    background-color: rgba(240, 248, 255);
+    padding: 3vh 2vw;
+    width: 100%;
+    align-self: center;
+}
+
+.messageInput {
+    outline: none;
+    border: none;
+    background-color: rgb(186, 192, 197);
+    padding: 10px;
+    border-radius: 10px;
+    width: 50vw;
+    @media (max-width: 600px) {
+        width: 60%;
+    }
+}
+ 
+.sendMessage {
+    outline: none;
+    border: none;
+    padding: 10px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.BottomPart input[type="file"] {
+    display: none;
+}
+
+.CustomFileInput {
+    display: inline-block;
+    padding: 10px 10px;
+    background-color: #4c7aaf;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+}
+
+.CustomFileInput:hover {
+    background-color: #45a049;
+}
+
+.FileInput-label {
+    font-size: 16px;
+}
+
+.icon {
+    color: rgb(0, 0, 0);
+}

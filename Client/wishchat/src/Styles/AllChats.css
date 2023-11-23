@@ -1,0 +1,111 @@
+
+
+
+
+
+
+
+.subtitle{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.addNewFriend{
+    text-align: center;
+}
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .newChatButton {
+    background-color: #dc2aff;
+    color: #fff;
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s, transform 0.3s;
+
+  }
+
+.disabledButton {
+
+    background-color: #ccc; 
+    color: #666;
+    cursor: not-allowed; 
+    transition: background-color 0.3s, transform 0.3s;
+
+  }
+
+.newChatButton:hover {
+    background-color: #74d1e4;
+}
+.disabledButton:hover{
+    background-color: #6d6d6d; 
+    color: #c9c9c9;
+
+  }
+.newChatButton:active {
+    transform: scale(0.9); 
+}
+.uniqueChatBoxContainer {
+  border-top: solid 1px rgb(193, 193, 193);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.uniqueChatBoxContainer:hover {
+  background-color: lightgray;
+  transition: background-color 0.3s ease;
+}
+
+.noLinkStyling {
+  text-decoration: none;
+  color: inherit;
+}
+.singleChatLinkContainer{
+  font-size: large;
+}
+.newestMessage {
+  font-size: 0.8rem;
+  color: grey;
+}
+
+
+
+.ProfilePicSmall {
+  display: flex;
+  align-items: flex-end;
+  width: 30px;
+  height: auto;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+
+.NewFriendInput {
+  border: none;
+  outline: none;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  width: 80%;
+  transition: border-bottom 0.3s ease;
+  border-bottom: 2px solid transparent;
+  margin-top: 0px;
+  margin-bottom: 30px;
+}
+
+.NewFriendInput:focus {
+  border-bottom: 2px solid #dc2aff;
+}

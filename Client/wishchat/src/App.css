@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: rgb(116,209,228);
+  background: linear-gradient(45deg, rgba(116,209,228,1) 20%, rgb(243, 15, 232) 100%);}
+body {
+  font-family: Arial, sans-serif;
+  
+}

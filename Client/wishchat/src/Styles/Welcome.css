@@ -1,0 +1,106 @@
+.WelcomeContainer{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.WelcomeWrapper{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row;
+    padding: 30px;
+    margin-top: 5vh;
+    width: 80vw;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    gap: 30px;
+    @media (max-width: 1072px) {
+        flex-direction: column-reverse;
+    }
+}
+.WelcomeTextContainer{
+    text-align: center;
+    width: 500px;
+
+}
+.MainWelcome{
+    font-weight: 1000;
+    font-size: 3rem;
+    @media (max-width: 850px) {
+        font-size: 3rem;
+
+    }
+
+}
+.SecondaryWelcome{
+    text-align: start;
+    margin-top: 10px;
+    
+}
+.SignUpContainer{
+    margin-top: 30px;
+}
+.Subtitle{
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.disclaimer{
+    font-size: 14px;
+    color: #888; 
+    margin-bottom: 5px;
+    text-align: center;
+}
+.OrLogInText{
+    margin-top: 10px;
+    text-align: center;
+}
+.LinkTo{
+    text-decoration: none;
+    color: inherit;
+    transform: scale(1.05);
+    background-image: linear-gradient(to left, #8A2BE2, #9400D3, #008B8B, #008B8B, #9400D3, #8A2BE2);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+}
+.WelcomeImageContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.WelcomeImageContainer img{
+    margin: 30px 0;
+    width: 300px;
+    @media (max-width: 850px) {
+        width: 30vw;
+    }
+
+}
+.WelcomeImageWelcome{
+    font-weight: 1000;
+    font-size: 4rem;
+    @media (max-width: 850px) {
+        font-size: 3rem;
+
+    }
+}
+@media (max-width: 850px) {
+.WelcomeImageContainer{
+    width: 70vw;
+}
+.WelcomeTextContainer{
+    width: 70vw;
+}
+}
+@keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }
