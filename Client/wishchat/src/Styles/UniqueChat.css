@@ -111,9 +111,12 @@
     background-color: rgb(186, 192, 197);
     padding: 10px;
     border-radius: 10px;
-    width: 50vw
+    width: 50vw;
+    @media (max-width: 600px) {
+        width: 60%;
+    }
 }
-
+ 
 .sendMessage {
     outline: none;
     border: none;

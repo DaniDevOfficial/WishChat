@@ -9,7 +9,7 @@
 .SimpleChatContainer {
     background-color: rgba(0, 255, 255, 0.484);
     width: 50%;
-    min-width: 300px;
+    min-width: 100px;
     overflow: auto; 
     padding-bottom: 30px;
 }

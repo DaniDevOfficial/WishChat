@@ -8,7 +8,6 @@ import { io } from 'socket.io-client';
 
 const socket = io('http://localhost:3001/');
 export function SimpleChat({ user, setUser, setChattingWith, chattingWith }) {
-    const userName = user
     const navigate = useNavigate();
     const [wantToChatWith, setWantToChatWith] = useState()
 
@@ -62,14 +61,14 @@ export function SimpleChat({ user, setUser, setChattingWith, chattingWith }) {
     }, [database]);
 
     const filteredChatsWith = messagesArray.filter(message =>
-        message.name.toLowerCase() === userName.toLowerCase() || message.recipient.toLowerCase() === userName.toLowerCase()
+        message.name.toLowerCase() === user.toLowerCase() || message.recipient.toLowerCase() === user.toLowerCase()
     );
 
 
     const uniqueConversations = new Map();
 
     filteredChatsWith.forEach(message => {
-        const isMyMessage = message.name.toLowerCase() === userName.toLowerCase();
+        const isMyMessage = message.name.toLowerCase() === user.toLowerCase();
         const key = isMyMessage ? message.recipient.toLowerCase() : message.name.toLowerCase();
         let content = message.message;
 
@@ -113,7 +112,7 @@ export function SimpleChat({ user, setUser, setChattingWith, chattingWith }) {
                         </div>
                         <div className="noLinkStyling" >
                             <div className="singleChatLinkContainer">
-                                Your Username: {userName}
+                                Your Username: {user}
                             </div>
                             <button
                                 onClick={handleLogout}
@@ -147,7 +146,7 @@ export function SimpleChat({ user, setUser, setChattingWith, chattingWith }) {
                         <div className="subtitle">Add a new Friend</div>
                         <input
                             className='NewFriendInput'
-                            placeholder='Their Username...'
+                            placeholder='Their user...'
                             type="text"
                             id="name"
                             name="name"
