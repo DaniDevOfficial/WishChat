@@ -92,6 +92,7 @@ export function PersonalChat({ user, chattingWith }) {
             if (socket.connected) {
 
             socket.emit('send message', formData);
+
             } else {
                 const messagesRef = ref(database, 'messages');
                 push(messagesRef, formData);
