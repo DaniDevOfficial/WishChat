@@ -94,6 +94,12 @@
     align-self: flex-start;
 
 }
+
+.Date{
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+}
 .BottomPart {
     display: flex;
     position: fixed;
