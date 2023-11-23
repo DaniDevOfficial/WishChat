@@ -1,10 +1,10 @@
 
 <div align='center'>
-    <h1><b>Wishlingo</b></h1>
-    <p>A simple software to learn new languages by completing sentences.</p>
+    <h1><b>WishChat</b></h1>
+    <p>A simple software to Chat with Friends and also in Groups.</p>
 </div>
 <div align="center">
-    <img src="https://firebasestorage.googleapis.com/v0/b/wishlingode.appspot.com/o/Logo%2FWishlingo.png?alt=media&token=e0e982dc-839c-4951-80fb-75352ef85fad" alt="Description of the Image" style="width: 300px; border-radius: 10px;">
+    <img src="https://firebasestorage.googleapis.com/v0/b/wishchatprog2.appspot.com/o/Images%2FMinimalist%20Black%20Beige%20Typography%20Fashion%20Business%20Logo.png?alt=media&token=6c68995f-4485-4955-bea6-6c3d12b0091f" alt="Description of the Image" style="width: 300px; border-radius: 10px;">
 
 </div>
 
@@ -12,33 +12,30 @@
 
 ## About
 
-The goal of this project is to develop a user-friendly software for learning new languages. The application presents a sentence in one language and then displays the same sentence in another language, with a missing word that the user needs to fill in. It then provides feedback on the correctness of the input and shows the correct answer if necessary.
-
-You can extend this basic concept by adding more features, such as multiple gaps in a sentence, an input form for adding new sentences, or multiple correct answers. However, remember that quality is more important than quantity, so prioritize a well-functioning application over adding many features with potential bugs.
+WishChat is a simple Chat app where the user is able to send and recive messages form Single People or even groups. In adition the user can send a image attached to the Messages. Do finish later
 
 ## Example
 
-Original Sentence: "Working at a company is a great experience!"
-Translated Sentence: "Bei einer Firma zu arbeiten ist eine grossartige ________!"
-User Input: "Erfahrung"
-Feedback: "Correct!"
 
 
 
 ### local installation:
+#### Frontend
 
 1. clone the repo
 
 ```
-git clone https://github.com/David21092/Wishlingo
+git clone https://github.com/David21092/WishChat/tree/dev
 ```
 
 2. cd into cloned repo
 
 ```
-cd Wishlingo
+cd wishchat
 ```
-
+```
+cd .\Client\wishchat\
+```
 3. install dependencies
 
 ```
@@ -58,12 +55,16 @@ npm install @firebase/app
 ```
 
 ```
+npm install react-icons/fa
+```
+
+```
 npm install react-toastify
 ```
 
 4. Create Firebase DB
 
-Due to the fact that you cant use my firebase realtime DB because i would have to give out my Tokens, you need to create your own one and just simply connect it with the app. This File should be called "firebase.jsx", its located in the src folder and should look something like this: 
+Due to the fact that you cant use my firebase realtime DB because i would have to give out my Tokens, you need to create your own one and just simply connect it with the app. This File should be called "firebaseConfig.jsx", its located in the src folder and should look something like this: 
 
 <br/>import { initializeApp } from "firebase/app";
 <br/>import { getAuth } from 'firebase/auth'
@@ -92,7 +93,6 @@ npm run start
 <br />
 
 <br />
----
 
 ## 💻 **TECHNOLOGIES**
 
@@ -103,6 +103,7 @@ npm run start
 [<div align="center"><img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" /></div>](#)
 [<div align="center"><img alt="React Router" src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white" /></div>](#)
 [<div align="center"><img alt="Firebase" src="https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase" /></div>](#)
+[<div align="center"><img alt="Socket.io" src="https://img.shields.io/badge/socket.io-%23000000.svg?style=for-the-badge&logo=socket.io&logoColor=white" /></div>](#)
 
 <br />
 
@@ -129,7 +130,7 @@ No additional restrictions: You may not apply legal terms or technological measu
 
 When using this work, please provide the following attribution:
 
-"Whishlingo" by David21092 is licensed under CC BY 4.0. To view a copy of this license, visit [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+"WishChat" by David21092 is licensed under CC BY 4.0. To view a copy of this license, visit [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 
 <br />
