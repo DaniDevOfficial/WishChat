@@ -112,6 +112,7 @@ export function WelcomeSite({ setMe }) {
                     <div className='WelcomeImageHaveFun'>
                         Have Fun Chatting
                     </div>
+                    <Link className="LinkTo" to="/legal">Legal stuff</Link>    
                 </div>
 
             </div>
