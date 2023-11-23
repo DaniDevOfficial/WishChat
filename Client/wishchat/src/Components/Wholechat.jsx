@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 export function WholeChat({ me }) {
     const navigate = useNavigate(); 
-    const [user, setUser] = useState(me);
+    const [user, setUser] = useState(me || "Dani");
     const [chattingWith, setChattingWith] = useState("")
 
     useEffect(() => {

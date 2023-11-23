@@ -32,7 +32,7 @@ export function PersonalChat({ user, chattingWith }) {
     const userName = user;
     let chattingwith = chattingWith
 
-    
+
     const initialFormData = {
         name: userName,
         message: '',
@@ -89,9 +89,11 @@ export function PersonalChat({ user, chattingWith }) {
             formData.fileURL = messageData.fileURL;
             formData.message = trimmedMessage;
             formData.sentDate = sentDate;
+
+
             if (socket.connected) {
 
-            socket.emit('send message', formData);
+                socket.emit('send message', formData);
 
             } else {
                 const messagesRef = ref(database, 'messages');
@@ -173,6 +175,82 @@ export function PersonalChat({ user, chattingWith }) {
         (message.name.toLowerCase() === chattingwith.toLowerCase() && message.recipient.toLowerCase() === userName.toLowerCase())
     );
 
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+
+        return `${year}/${month}/${day}`;
+    }
+
+
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+
+        return `${year}/${month}/${day}`;
+    }
+
+    function isToday(date) {
+        const today = new Date();
+        const checkingDate = new Date(date);
+        return (
+            checkingDate.getFullYear() === today.getFullYear() &&
+            checkingDate.getMonth() === today.getMonth() &&
+            checkingDate.getDate() === today.getDate()
+        );
+    }
+
+    function isYesterday(date) {
+        const yesterday = new Date();
+        const checkingDate = new Date(date);
+        yesterday.setDate(yesterday.getDate() - 1);
+        return (
+            checkingDate.getFullYear() === yesterday.getFullYear() &&
+            checkingDate.getMonth() === yesterday.getMonth() &&
+            checkingDate.getDate() === yesterday.getDate()
+        );
+    }
+    function splitMessagesByDate(messages) {
+        const messagesByDate = [];
+        let currentDate = null;
+
+        messages.forEach((message) => {
+            const messageDate = formatDate(message.sentDate);
+            if (messageDate !== currentDate || currentDate === "Today" || currentDate === "Yesterday") {
+                let tmp = currentDate;
+
+                if (isToday(message.sentDate)) {
+                    tmp = "Today";
+                    currentDate = messageDate;
+                }
+                else if (isYesterday(message.sentDate)) {
+                    tmp = "Yesterday";
+                    currentDate = messageDate;
+                } else {
+                    tmp = messageDate;
+                    currentDate = messageDate;
+                }
+                messagesByDate.push({ newDate: tmp });
+            }
+
+            messagesByDate.push({
+                name: message.name,
+                message: message.message,
+                recipient: message.recipient,
+                sentDate: message.sentDate,
+                fileType: message.fileType,
+                fileURL: message.fileURL,
+            });
+        });
+
+        return messagesByDate;
+    }
+    console.log(splitMessagesByDate(filteredmessages));
+    const messagesByDate = splitMessagesByDate(filteredmessages);
     const formatTimestamp = (timestamp) => {
 
         const date = new Date(timestamp);
@@ -205,35 +283,44 @@ export function PersonalChat({ user, chattingWith }) {
             {chattingWith && (
                 <div className=''>
                     <div className="MessagesContainer">
-                        <h2>Messages:</h2>
-                        {filteredmessages.map((message, index) => (
-                            <div className="SingleMessageContainer" key={index}>
-                                <div className={`SingleMessage ${message.name.toLowerCase() === userName.toLowerCase() ? 'mymessage' : 'notmymessage'}`}>
-                                    <div className="SingleMessageName">
-                                        <div className="MessageTopPartContainer">
-                                            <div>
-                                                {message.name}
+                        {messagesByDate.map((message, index) => (
+                            <div key={index}>
+                                {message.newDate && (
+                                    <div className="Date">
+                                        {message.newDate}
+                                    </div>
+                                )}
+
+                                {!message.newDate && (
+                                    <div className="SingleMessageContainer">
+                                        <div className={`SingleMessage ${message.name.toLowerCase() === userName.toLowerCase() ? 'mymessage' : 'notmymessage'}`}>
+                                            <div className="SingleMessageName">
+                                                <div className="MessageTopPartContainer">
+                                                    <div>
+                                                        {message.name}
+                                                    </div>
+
+                                                    <div className="SingleMessageDate">
+                                                        {formatTimestamp(message.sentDate)}
+                                                    </div>
+                                                </div>
                                             </div>
 
-                                            <div className="SingleMessageDate">
-                                                {formatTimestamp(message.sentDate)}
+                                            {message.fileType === "img" && (
+                                                <div className="SingleMessageImage">
+                                                    <img src={message.fileURL} alt="Image" />
+                                                </div>
+                                            )}
+
+                                            <div className="SingleMessageMessage">
+                                                {message.message}
                                             </div>
-
                                         </div>
                                     </div>
-
-                                    {message.fileType === "img" && (
-                                        <div className="SingleMessageImage">
-                                            <img src={message.fileURL} alt="Image" />
-                                        </div>
-                                    )}
-                                    <div className="SingleMessageMessage">
-                                        {message.message}
-                                    </div>
-
-                                </div>
+                                )}
                             </div>
                         ))}
+
 
                     </div>
                     <div ref={bottomRef}></div>

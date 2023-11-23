@@ -53,7 +53,6 @@ export function WelcomeSite({ setMe }) {
             <WelcomeAnimation />
 
             <div className="WelcomeWrapper">
-            <Link className="LinkTo" to="/test">testing</Link>
                 <div className="WelcomeTextContainer">
                     <div className="MainWelcome">
                         Welcome to WishChat
@@ -114,7 +113,6 @@ export function WelcomeSite({ setMe }) {
                         Have Fun Chatting
                     </div>
                 </div>
-                <Link to="/testing">Testing</Link>
 
             </div>
         </div>
