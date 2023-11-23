@@ -98,6 +98,7 @@ export function SimpleChat({ user, setUser, setChattingWith, chattingWith }) {
     });
 
     function handleLogout() {
+        toast.success("Sign out Sucessful");
         setUser(null);
         navigate('/')
     }

@@ -32,7 +32,7 @@ export function PersonalChat({ user, chattingWith }) {
     const userName = user;
     let chattingwith = chattingWith
 
-    
+
     const initialFormData = {
         name: userName,
         message: '',
@@ -89,9 +89,11 @@ export function PersonalChat({ user, chattingWith }) {
             formData.fileURL = messageData.fileURL;
             formData.message = trimmedMessage;
             formData.sentDate = sentDate;
+
+
             if (socket.connected) {
 
-            socket.emit('send message', formData);
+                socket.emit('send message', formData);
 
             } else {
                 const messagesRef = ref(database, 'messages');
@@ -173,6 +175,42 @@ export function PersonalChat({ user, chattingWith }) {
         (message.name.toLowerCase() === chattingwith.toLowerCase() && message.recipient.toLowerCase() === userName.toLowerCase())
     );
 
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+      
+        return `${year}/${month}/${day}`;
+      }
+      
+      function splitMessagesByDate(messages) {
+        const messagesByDate = [];
+        let currentDate = null;
+      
+        // Iterate through each message
+        messages.forEach((message) => {
+          const messageDate = formatDate(message.sentDate);
+            console.log(messageDate);
+          if (messageDate !== currentDate) {
+            messagesByDate.push({ newDate: message.sentDate });
+            currentDate = messageDate; 
+          }
+      
+          messagesByDate.push({
+            name: message.name,
+            message: message.message,
+            recipient: message.recipient,
+            sentDate: message.sentDate,
+            fileType: message.fileType,
+            fileURL: message.fileURL,
+          });
+        });
+      
+        return messagesByDate;
+      }
+      console.log(splitMessagesByDate(filteredmessages));
+      
     const formatTimestamp = (timestamp) => {
 
         const date = new Date(timestamp);
