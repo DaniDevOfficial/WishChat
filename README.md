@@ -1,7 +1,7 @@
 
 <div align='center'>
     <h1><b>WishChat</b></h1>
-    <p>A simple software to Chat with Friends and also in Groups.</p>
+    <p>A simple software to Chat with Friends.</p>
 </div>
 <div align="center">
     <img src="https://firebasestorage.googleapis.com/v0/b/wishchatprog2.appspot.com/o/Images%2FMinimalist%20Black%20Beige%20Typography%20Fashion%20Business%20Logo.png?alt=media&token=6c68995f-4485-4955-bea6-6c3d12b0091f" alt="Description of the Image" style="width: 300px; border-radius: 10px;">
@@ -12,7 +12,9 @@
 
 ## About
 
-WishChat is a simple Chat app where the user is able to send and recive messages form Single People or even groups. In adition the user can send a image attached to the Messages. Do finish later
+WishChat is a simple Chat app where the user is able to send and recive messages form other Users. In adition the user can send a image attached to the Messages. 
+
+You will find a more indepth Documentation at:  https://david-bischof.ch/Projects/Wishchat
 
 ## Example
 
@@ -20,7 +22,6 @@ WishChat is a simple Chat app where the user is able to send and recive messages
 
 
 ### local installation:
-#### Frontend
 
 1. clone the repo
 
@@ -90,9 +91,39 @@ export const auth = getAuth(app);
 npm run start
 ```
 
+#### Backend Setup
+
+2. cd into cloned repo
+
+```
+cd wishchat
+```
+```
+cd .\Backend\
+```
+3. install dependencies
+
+```
+npm init
+```
+
+```
+npm i express socket.io firebase-admin nodemon
+```
+
+4. secrets
+
+You will need to create your onw serviceAccountKey.json (this will be directly in the Backend folder) and you will have to use your onw admin connection to the database.
+
+5. Run the backend
+
+```
+npm start
+```
 <br />
 
 <br />
+---
 
 ## 💻 **TECHNOLOGIES**
 
@@ -103,7 +134,6 @@ npm run start
 [<div align="center"><img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" /></div>](#)
 [<div align="center"><img alt="React Router" src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white" /></div>](#)
 [<div align="center"><img alt="Firebase" src="https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase" /></div>](#)
-[<div align="center"><img alt="Socket.io" src="https://img.shields.io/badge/socket.io-%23000000.svg?style=for-the-badge&logo=socket.io&logoColor=white" /></div>](#)
 
 <br />
 
@@ -130,7 +160,7 @@ No additional restrictions: You may not apply legal terms or technological measu
 
 When using this work, please provide the following attribution:
 
-"WishChat" by David21092 is licensed under CC BY 4.0. To view a copy of this license, visit [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+"Whishlingo" by David21092 is licensed under CC BY 4.0. To view a copy of this license, visit [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 
 <br />
